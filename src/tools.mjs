@@ -97,6 +97,11 @@ export function createServiceRequest(args = {}, ctx = {}) {
     logEmergency({ channel: ctx.channel, keyword: hit, where: 'create_service_request' });
     return { error: EMERGENCY_MESSAGE, emergency: true };
   }
+  // One call files one request per problem: a repeated call (echo, retries) returns the ticket already filed.
+  if (ctx.call_id) {
+    const dup = tickets.find((x) => x.kind === 'request' && x.call_id === ctx.call_id && x.complaint_type === t.complaint_type);
+    if (dup) return { request_id: dup.request_id, agency: dup.agency, status: dup.status, complaint_type: dup.complaint_type, descriptor: dup.descriptor, note: 'Already filed on this call; do not file again.' };
+  }
   const known = t.top_descriptors.find((d) => d.toLowerCase() === String(descriptor || '').toLowerCase());
   const record = save({
     kind: 'request',

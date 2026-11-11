@@ -111,6 +111,12 @@ export function startSip({ bridgePort, sipPort = Number(process.env.SIP_PORT || 
     const callId = h1(msg, 'call-id');
     const reply = (code, reason, opts) => sendTo(buildResponse(msg, code, reason, opts), rinfo.port, rinfo.address);
 
+    if (method !== 'ACK') console.log(`[sip] ${method} from ${rinfo.address}:${rinfo.port}`);
+    // Softphones register before they let you dial; accept any registration (demo: no auth).
+    if (method === 'REGISTER') {
+      const contact = h1(msg, 'contact');
+      return reply(200, 'OK', { toTag: crypto.randomBytes(4).toString('hex'), extra: [...(contact ? [`Contact: ${contact};expires=3600`] : []), 'Expires: 3600'] });
+    }
     if (method === 'OPTIONS') return reply(200, 'OK', { extra: ['Allow: INVITE, ACK, BYE, CANCEL, OPTIONS', 'Accept: application/sdp'] });
     if (method === 'ACK') return;
     if (method === 'BYE') {
