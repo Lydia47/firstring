@@ -8,14 +8,14 @@
   :root {
     --bg: #f9f9f7; --panel: #ffffff; --line: #e4e2dc; --ink: #0b0b0b; --ink2: #52514e; --muted: #6b6a65;
     --s1: #2a78d6; --s2: #eb6834; --ok: #0ca30c; --axis: #c9c7c0;
-    --gap: clamp(8px, 0.8vw, 18px); --pad: clamp(10px, 1vw, 22px); --radius: 10px;
+    --gap: clamp(8px, 0.8vw, 18px); --pad: clamp(10px, 1vw, 22px); --radius: 12px; --shadow: 0 1px 2px rgba(64,58,40,.05), 0 4px 14px rgba(64,58,40,.05);
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; height: 100%; }
   body {
     background: var(--bg); color: var(--ink);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    font-size: clamp(13px, 0.78vw, 17px); overflow-x: hidden;
+    font-size: clamp(13px, 0.78vw, 17px); overflow-x: hidden; font-variant-numeric: tabular-nums; -webkit-font-smoothing: antialiased;
   }
   .app { display: grid; grid-template-columns: 70vw 1fr; grid-template-rows: 6vh 70vh minmax(24vh, auto); min-height: 100vh; }
   header {
@@ -34,7 +34,7 @@
   .bottom { grid-column: 1; grid-row: 3; padding: var(--gap) var(--pad) var(--pad) 1.4vw; min-width: 0; }
   .side { grid-column: 2; grid-row: 2 / 4; padding: var(--pad) 1.4vw var(--pad) 0; min-width: 0; display: flex; flex-direction: column; min-height: 0; }
 
-  .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--pad); min-width: 0; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--pad); min-width: 0; box-shadow: var(--shadow); }
   h2 { font-size: clamp(14px, 1vw, 21px); font-weight: 600; margin: 0; }
   .note { color: var(--muted); font-size: clamp(12px, 0.72vw, 15px); }
 
@@ -58,17 +58,17 @@
   .cardhead { display: flex; align-items: center; justify-content: space-between; gap: var(--gap); flex-wrap: wrap; }
   .legend { display: flex; gap: 1.4vw; color: var(--ink2); font-size: clamp(12px, 0.78vw, 16px); }
   .legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
-  .chart { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-start; gap: 0.7vh; padding-top: 0.4vh; }
+  .chart { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: space-evenly; gap: 1.4vh; padding: 0.6vh 0; }
   .bar-row { display: grid; grid-template-columns: minmax(80px, 9vw) 1fr; align-items: center; gap: 0.8vw; }
-  .bar-row .a { text-align: right; color: var(--ink2); font-weight: 550; font-size: clamp(12px, 0.85vw, 18px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bar-row .a { text-align: right; color: var(--ink2); font-weight: 600; font-size: clamp(14px, 1.05vw, 22px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .bar-row .a.unrouted { color: var(--muted); font-style: italic; }
-  .bar-track { display: flex; align-items: center; gap: 0.5vw; border-left: 1px solid var(--axis); min-height: clamp(18px, 2.6vh, 34px); }
-  .bar { display: flex; height: clamp(14px, 2.2vh, 28px); border-radius: 0 4px 4px 0; overflow: hidden; transition: width .4s ease; min-width: 2px; }
+  .bar-track { display: flex; align-items: center; gap: 0.5vw; border-left: 1px solid var(--axis); min-height: clamp(30px, 5vh, 64px); }
+  .bar { display: flex; height: clamp(26px, 4.4vh, 56px); border-radius: 0 6px 6px 0; overflow: hidden; transition: width .4s ease; min-width: 2px; }
   .bar span { height: 100%; transition: width .4s ease; }
   .bar span + span { border-left: 2px solid var(--panel); }
   .bar .s1 { background: var(--s1); }
   .bar .s2 { background: var(--s2); }
-  .bar-row .tot { color: var(--ink); font-weight: 650; font-size: clamp(13px, 0.9vw, 19px); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .bar-row .tot { color: var(--ink); font-weight: 650; font-size: clamp(16px, 1.3vw, 26px); font-variant-numeric: tabular-nums; white-space: nowrap; }
   .bar-row .tot small { color: var(--muted); font-weight: 400; margin-left: 0.4vw; }
 
   .empty { color: var(--muted); padding: 2vh 0; text-align: center; }
@@ -77,7 +77,7 @@
   .side .card { display: flex; flex-direction: column; gap: 1vh; flex: 1; min-height: 0; }
   .count-pill { display: inline-block; min-width: 1.8em; text-align: center; padding: 1px 9px; border-radius: 999px; background: var(--s2); color: #fff; font-weight: 650; font-size: clamp(12px, 0.8vw, 16px); }
   .queue { display: flex; flex-direction: column; gap: 1vh; overflow-y: auto; min-height: 0; flex: 1; }
-  .ho { border: 1px solid var(--line); border-left: 4px solid var(--s2); border-radius: 8px; padding: 1vh 0.9vw; display: flex; flex-direction: column; gap: 0.6vh; animation: fadein .5s ease; }
+  .ho { border: 1px solid var(--line); border-left: 4px solid var(--s2); border-radius: var(--radius); padding: 1vh 0.9vw; display: flex; flex-direction: column; gap: 0.6vh; animation: fadein .5s ease; }
   .ho .top { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6vw; }
   .ho .id { font-weight: 650; font-variant-numeric: tabular-nums; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: clamp(12px, 0.8vw, 16px); }
   .ho .t { color: var(--muted); font-size: clamp(11px, 0.7vw, 14px); white-space: nowrap; }
@@ -94,7 +94,7 @@
   tbody tr { animation: fadein .5s ease; }
   td.id { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 600; }
   td .desc { color: var(--muted); }
-  .badge { display: inline-block; padding: 1px 8px; border-radius: 6px; background: #eaf2fc; color: #1d5aa6; font-weight: 650; font-size: .92em; }
+  .badge { display: inline-block; padding: 1px 9px; border-radius: 999px; background: #eaf2fc; color: #1d5aa6; font-weight: 650; font-size: .92em; }
   .tag { display: inline-block; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink2); font-size: .9em; }
   .tag.ai-agent, .tag.api { border-color: #b9d3f3; color: #1d5aa6; }
   .unv { color: var(--s2); font-weight: 700; margin-left: 3px; }
@@ -182,7 +182,7 @@
   function str(v) { return v == null ? '' : String(v); }
   function ts(r) { var t = Date.parse(r && r.created_at); return isNaN(t) ? 0 : t; }
   function fmtTime(r) {
-    var t = ts(r); if (!t) return '—';
+    var t = ts(r); if (!t) return '-';
     return new Date(t).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   }
   function el(tag, cls, text) {
@@ -267,7 +267,7 @@
     hsorted.forEach(function (h) {
       var card = el('div', 'ho');
       var top = el('div', 'top');
-      top.appendChild(el('span', 'id', str(h.request_id) || '—'));
+      top.appendChild(el('span', 'id', str(h.request_id) || '-'));
       top.appendChild(el('span', 't', fmtTime(h)));
       card.appendChild(top);
       if (h.reason) card.appendChild(el('span', 'reason', str(h.reason)));
@@ -287,18 +287,18 @@
     }
     recent.forEach(function (r) {
       var tr = el('tr');
-      tr.appendChild(el('td', 'id', str(r.request_id) || '—'));
+      tr.appendChild(el('td', 'id', str(r.request_id) || '-'));
       tr.appendChild(el('td', null, fmtTime(r)));
-      var tdT = el('td'); tdT.appendChild(document.createTextNode(str(r.complaint_type) || '—'));
+      var tdT = el('td'); tdT.appendChild(document.createTextNode(str(r.complaint_type) || '-'));
       if (r.descriptor) {
         tdT.appendChild(el('span', 'desc', ' / ' + str(r.descriptor)));
         if (r.descriptor_unverified) { var u = el('span', 'unv', '?'); u.title = 'Descriptor not verified'; tdT.appendChild(u); }
       }
       tdT.title = tdT.textContent; tr.appendChild(tdT);
-      var tdA = el('td'); tdA.appendChild(el('span', 'badge', str(r.agency) || '—')); tr.appendChild(tdA);
+      var tdA = el('td'); tdA.appendChild(el('span', 'badge', str(r.agency) || '-')); tr.appendChild(tdA);
       var loc = [r.location, r.borough].filter(Boolean).map(str).join(', ');
-      var tdL = el('td', null, loc || '—'); tdL.title = loc; tr.appendChild(tdL);
-      var tdC = el('td'); var chn = str(r.channel) || '—';
+      var tdL = el('td', null, loc || '-'); tdL.title = loc; tr.appendChild(tdL);
+      var tdC = el('td'); var chn = str(r.channel) || '-';
       var tg = el('span', 'tag ' + chn, chn); tdC.appendChild(tg);
       if (r.language && r.language !== 'en') tdC.appendChild(el('span', 'tag', str(r.language)));
       tr.appendChild(tdC);
