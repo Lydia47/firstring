@@ -2,11 +2,27 @@
 
 **Every 311 call becomes a complete, correctly routed ticket — before the caller hangs up.**
 
+```mermaid
+flowchart LR
+    A["📞 Caller describes<br/>the problem"] --> B["🧭 FirstRing picks an<br/>official complaint type"]
+    B --> C["❓ Asks only for<br/>what is missing"]
+    C --> D["🔁 Reads it back,<br/>caller says yes"]
+    D --> E["🎫 Ticket filed<br/>agency from the city's type table"]
+```
+
 FirstRing is a voice agent for New York City's 311 line. It answers immediately, works out which of the city's official complaint types the caller means, asks only for what is missing, reads the request back, and files a ticket whose agency comes from the city's own type table, not from the model.
 
 Demo video (90 s): TODO
 
 Built during the c0mpiled-18 hackathon (Taipei, 2026-11-11).
+
+- **🎯 No made-up categories.** `complaint_type` is an enum of 117 official NYC types; the model cannot write free text.
+- **🏛️ The server routes, not the model.** The agency is looked up from the official type table.
+- **🔁 No ticket without a read-back.** The server rejects a request until the caller has confirmed it.
+- **🚨 Emergencies go to 911.** Emergency keywords are caught server-side and answered with "hang up and call 911".
+- **🔌 Three ways in, one set of rules.** Phone calls, a resident's AI assistant on the phone, and AI agents over REST/MCP all go through the same tool handlers.
+
+**Contents:** [Call it yourself](#call-it-yourself-judges-try-it-from-your-phone) · [What happens on one call](#what-happens-on-one-call) · [How it avoids misclassifying](#how-it-avoids-misclassifying) · [Architecture](#architecture) · [The problem](#the-problem) · [Business model](#business-model) · [Going live tomorrow](#going-live-tomorrow) · [Run it locally](#run-it-locally)
 
 ---
 
@@ -20,11 +36,44 @@ FirstRing answers a real SIP call from a free softphone app — no browser neede
 4. Dial **`311`** and report a problem in English or Spanish — e.g. *"My upstairs neighbor is blasting music"* — then give an address and borough, and say yes to the read-back.
 5. Watch the ticket appear live on the ops view (`/ops`).
 
-Use earphones or turn speakerphone off: the agent's own voice played over a loudspeaker can be picked up as the caller. This is a direct SIP demo (G.711 over UDP, no SBC, no phone number) — see [Connecting to a real 311 phone line](#connecting-to-a-real-311-phone-line-not-built-tonight).
+> [!TIP]
+> Use earphones or turn speakerphone off: the agent's own voice played over a loudspeaker can be picked up as the caller.
+
+This is a direct SIP demo (G.711 over UDP, no SBC, no phone number) — see [Connecting to a real 311 phone line](#connecting-to-a-real-311-phone-line-not-built-tonight).
 
 ## What happens on one call
 
 A synthetic caller (pre-recorded TTS audio, played as the microphone) reports loud music upstairs:
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor C as Caller
+    participant B as Node bridge<br/>src/server.mjs
+    participant G as Gemini 3.1 Flash Live
+    participant T as Tool handlers<br/>src/tools.mjs
+    participant S as Call screen and /ops
+
+    C->>B: 16 kHz PCM over WebSocket /call
+    B->>G: caller audio (Live API)
+    Note over B: Emergency keywords screened server-side on the caller's transcript
+    G-->>C: "NYC 311, this is FirstRing. What can I help you with today?"
+    C->>G: "My upstairs neighbor is blasting music"
+    G->>B: toolCall find_complaint_type
+    B->>T: findComplaintType
+    T-->>G: official candidates + noise-group clarifying question
+    G-->>C: asks only for what is missing: address and borough
+    G-->>C: "I'll file a residential noise complaint at 245 East 86th Street, Manhattan. Is that correct?"
+    C->>G: "Yes"
+    G->>B: toolCall create_service_request (confirmed_by_caller: true)
+    B->>T: createServiceRequest
+    alt validation fails
+        T-->>G: rejected with the reason, e.g. read back first
+    else accepted
+        T-->>G: request_id + agency looked up by the server
+        T->>S: ticket pushed live: Noise - Residential → NYPD
+    end
+```
 
 1. FirstRing answers: *"NYC 311, this is FirstRing. What can I help you with today?"*
 2. Caller describes the problem. The agent calls `find_complaint_type`, which returns official candidates (plus a clarifying question when they fall in a confusable group like noise).
@@ -32,13 +81,37 @@ A synthetic caller (pre-recorded TTS audio, played as the microphone) reports lo
 4. It reads back: *"I'll file a residential noise complaint at 245 East 86th Street, Manhattan. Is that correct?"*
 5. Caller says yes. `create_service_request` is accepted by the server; the ticket appears on screen — **Noise - Residential / Loud Music/Party → NYPD** — about 35 seconds after the call started (measured on our recorded demo calls).
 
-The same flow works in Spanish (Spanish conversation, English ticket: **HEAT/HOT WATER → HPD**), and when the caller is a resident's AI assistant (**Street Light Condition → DOT**, filed `on_behalf_of` the resident).
+The same flow works in Spanish and when the caller is a resident's AI assistant:
 
-When the caller asks for a person, the problem isn't an official type, or the agent is still unsure after clarifying twice, it calls `transfer_to_human`: the call screen shows *Transferring to 311 specialist* and a handoff record with an AI-written summary lands in the ops view's **Needs a human** list, so the specialist doesn't make the caller repeat themselves.
+| Demo call | Caller | Ticket |
+|---|---|---|
+| 🇺🇸 Noise | English | **Noise - Residential / Loud Music/Party → NYPD** |
+| 🇪🇸 Heat | Spanish conversation, English ticket | **HEAT/HOT WATER → HPD** |
+| 🤖 Streetlight | A resident's AI assistant | **Street Light Condition → DOT**, filed `on_behalf_of` the resident |
+
+**When a person is needed.** When the caller asks for a person, the problem isn't an official type, or the agent is still unsure after clarifying twice, it calls `transfer_to_human`: the call screen shows *Transferring to 311 specialist* and a handoff record with an AI-written summary lands in the ops view's **Needs a human** list, so the specialist doesn't make the caller repeat themselves.
 
 ## How it avoids misclassifying
 
-Accuracy comes from giving the model no room to make things up, not from asking it to be careful:
+Accuracy comes from giving the model no room to make things up, not from asking it to be careful. Every `create_service_request` passes the same server-side checks:
+
+```mermaid
+flowchart LR
+    M["Model calls create_service_request"] --> E{"complaint_type is one of the<br/>117 official types?"}
+    E -- no --> R1["❌ Rejected<br/>call find_complaint_type, pick a candidate"]
+    E -- yes --> CF{"confirmed_by_caller<br/>is true?"}
+    CF -- no --> R2["❌ Rejected<br/>read back first, get an explicit yes"]
+    CF -- yes --> AD{"Address and borough<br/>present and valid?"}
+    AD -- no --> R3["❌ Rejected<br/>ask for what is missing"]
+    AD -- yes --> EM{"Emergency keyword?"}
+    EM -- yes --> R4["🚨 Hang up and call 911<br/>logged"]
+    EM -- no --> AG["🏛️ Server looks up the agency<br/>from the official type table"]
+    AG --> DS{"Descriptor in the type's<br/>known list?"}
+    DS -- yes --> F1["✅ Filed"]
+    DS -- no --> F2["✅ Filed, flagged<br/>descriptor_unverified"]
+```
+
+Every rejection goes back to the model with the reason, so it fixes the request on the same call instead of filing a wrong one.
 
 | Guardrail | Where |
 |---|---|
@@ -51,26 +124,27 @@ Accuracy comes from giving the model no room to make things up, not from asking 
 
 ## Architecture
 
-```
- Caller (browser mic, or a pre-recorded audio file played as the mic)
-   │  16 kHz PCM over WebSocket
-   ▼
- Node bridge  (src/server.mjs: express + ws)          ┌──────────────────────────────┐
-   ├─ Live API (v1beta) ─────────────────────────────► │ Gemini 3.1 Flash Live        │
-   │   toolCall ◄──────────────────────────────────── │ gemini-3.1-flash-live-preview│
-   │   sendToolResponse ─────────────────────────────► └──────────────────────────────┘
-   │
-   ├─ tool handlers (src/tools.mjs) ── one set, shared by every entry point
-   │     find_complaint_type · create_service_request · lookup_request_status · transfer_to_human
-   │     → data/tickets.jsonl (ticket fields only; no call audio is stored)
-   │
-   ├─ REST  /api/v1/*   ─┐  for AI agents acting for residents
-   ├─ MCP   /mcp        ─┘  (Bearer token, same validation)
-   │
-   └─ pushes tickets to the call screen (/)  and the ops view (/ops)
-```
+### Three ways in, one set of rules
 
-## Three ways in, one set of rules
+```mermaid
+flowchart LR
+    subgraph IN["Three ways in"]
+        direction TB
+        P["📞 Phone<br/>browser mic, or SIP softphone via src/sip.mjs"]
+        AV["🤖 AI agent on the phone<br/>a resident's assistant calls and says so"]
+        AP["🔌 AI agent via API / MCP<br/>REST /api/v1/* · MCP /mcp · Bearer token"]
+    end
+
+    P -->|"16 kHz PCM over WebSocket /call"| BR["Node bridge<br/>src/server.mjs"]
+    AV --> BR
+    BR <-->|"Live API: audio, toolCall, sendToolResponse"| GL["Gemini 3.1 Flash Live<br/>gemini-3.1-flash-live-preview"]
+    BR --> TH
+    AP -->|"src/api.mjs · src/mcp.mjs"| TH
+
+    TH["🛡️ One set of tool handlers — src/tools.mjs<br/>find_complaint_type · create_service_request<br/>lookup_request_status · transfer_to_human"]
+    TH --> DB[("data/tickets.jsonl<br/>ticket fields only, no call audio")]
+    TH --> UI["🖥️ Call screen / and ops view /ops"]
+```
 
 | Channel | How | Ticket `channel` |
 |---|---|---|
@@ -89,17 +163,31 @@ FIRSTRING_API_TOKEN=... node scripts/agent-demo.mjs          # MCP client acting
 FIRSTRING_API_TOKEN=... node scripts/agent-demo.mjs --rest   # same flow over REST
 ```
 
+### Where things live
+
+| Path | What it does |
+|---|---|
+| `src/server.mjs` | Node bridge (express + ws): WebSocket `/call` ⇄ Gemini Live, pushes tickets to `/` and `/ops` |
+| `src/tools.mjs` | The 4 tool handlers and all validation — shared by every entry point |
+| `src/api.mjs` | REST API `/api/v1/*` |
+| `src/mcp.mjs` | MCP server (Streamable HTTP at `/mcp`) |
+| `src/sip.mjs` | SIP softphone demo endpoint |
+| `public/index.html` | Call screen |
+| `public/ops.html` | City ops view |
+| `scripts/agent-demo.mjs` | Demo client acting as a resident's AI assistant (MCP or REST) |
+| `data/` | Official type table, confusable groups, synthetic caller audio, ticket log |
+
 ## The problem
 
-- NYC 311 took **16.6 million calls** in FY2026; the average wait was **43 seconds** against a 30-second target, and 75% were answered within 30 seconds against an 80% target. ([Mayor's Management Report FY2026, 311 chapter](https://www.nyc.gov/assets/operations/downloads/pdf/mmr2026/311.pdf))
-- Turning a call into a ticket means choosing among 100+ official complaint types and getting an exact address — on the phone, in the caller's language. About **1.7 million** of those calls a year are in Spanish (same report).
+- 📈 NYC 311 took **16.6 million calls** in FY2026; the average wait was **43 seconds** against a 30-second target, and 75% were answered within 30 seconds against an 80% target. ([Mayor's Management Report FY2026, 311 chapter](https://www.nyc.gov/assets/operations/downloads/pdf/mmr2026/311.pdf))
+- 🗂️ Turning a call into a ticket means choosing among 100+ official complaint types and getting an exact address — on the phone, in the caller's language. About **1.7 million** of those calls a year are in Spanish (same report).
 
 ## Business model
 
-- Cities pay **$1 per resolved call** (a call the AI finished without a human).
-- Today each 311 call costs at most about **$3.87** ($64.2M total 311 spend ÷ 16.6M calls; the spend also covers web and app, so the real per-call cost is lower).
-- If FirstRing resolves **30% of NYC calls (an assumption, not measured)**: about **$5M/year** revenue, and the city saves roughly $14M/year.
-- Rollout: overflow and after-hours first (no existing jobs displaced), then the main line, then permits and inspections.
+- 💵 Cities pay **$1 per resolved call** (a call the AI finished without a human).
+- 🧾 Today each 311 call costs at most about **$3.87** ($64.2M total 311 spend ÷ 16.6M calls; the spend also covers web and app, so the real per-call cost is lower).
+- 📊 If FirstRing resolves **30% of NYC calls (an assumption, not measured)**: about **$5M/year** revenue, and the city saves roughly $14M/year.
+- 🪜 Rollout: overflow and after-hours first (no existing jobs displaced), then the main line, then permits and inspections.
 
 ## Going live tomorrow
 
@@ -117,12 +205,26 @@ What is done tonight, and what a real deployment still needs — honestly:
 
 ### Connecting to a real 311 phone line (not built tonight)
 
-Tonight's calls run over the browser. Answering a city's existing number needs a telephony path in front of the same bridge — none of this is implemented in this repo:
+Tonight's calls run over the browser. Answering a city's existing number needs a telephony path in front of the same bridge — none of the dashed part is implemented in this repo:
 
-```
- City 311 number ─► city PBX / carrier ─► SBC ─► SIP trunk ─► SIP gateway ─► media bridge ─► FirstRing bridge
-   (unchanged)        forwards all calls,     security edge,   (TLS/SRTP)    (e.g. Asterisk)   8 kHz G.711 ⇄      (src/server.mjs)
-                      or overflow/after-hours  NAT, codecs                                       16/24 kHz PCM
+```mermaid
+flowchart LR
+    subgraph PROD["Production path — not built"]
+        direction LR
+        N["📞 City 311 number<br/>unchanged"] --> PBX["City PBX / carrier<br/>forwards all calls,<br/>or overflow/after-hours"]
+        PBX --> SBC["🛡️ SBC<br/>security edge,<br/>NAT, codecs"]
+        SBC -->|"SIP trunk (TLS/SRTP)"| GW["SIP gateway<br/>(e.g. Asterisk)"]
+        GW --> MB["Media bridge<br/>8 kHz G.711 ⇄<br/>16/24 kHz PCM"]
+    end
+    subgraph TONIGHT["Built tonight — direct SIP demo, no SBC, no PSTN"]
+        direction LR
+        SP["📱 Softphone<br/>Linphone, baresip"] -->|"SIP over UDP, G.711 PCMU"| SIPJS["src/sip.mjs"]
+    end
+    MB --> FR["FirstRing bridge<br/>src/server.mjs"]
+    SIPJS -->|"WebSocket /call"| FR
+
+    classDef notbuilt stroke-dasharray: 5 5
+    class N,PBX,SBC,GW,MB notbuilt
 ```
 
 1. **Number stays the same.** The city (or its carrier) forwards calls to us — all of them, or only overflow and after-hours, which is the easiest first step.
@@ -156,9 +258,11 @@ export FIRSTRING_API_TOKEN=change-me # enables the REST API and MCP
 npm start                            # http://localhost:8080
 ```
 
-- `http://localhost:8080/` — call screen, talk through your mic
-- `http://localhost:8080/?caller=nyc-noise` — synthetic caller (also `es-heat`, `agent`, `human`)
-- `http://localhost:8080/ops` — city ops view
+| URL | What you get |
+|---|---|
+| `http://localhost:8080/` | Call screen, talk through your mic |
+| `http://localhost:8080/?caller=nyc-noise` | Synthetic caller (also `es-heat`, `agent`, `human`) |
+| `http://localhost:8080/ops` | City ops view |
 
 ## Data
 
