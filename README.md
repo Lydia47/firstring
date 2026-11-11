@@ -12,7 +12,7 @@ flowchart LR
 
 FirstRing is a voice agent for New York City's 311 line. It answers immediately, works out which of the city's official complaint types the caller means, asks only for what is missing, reads the request back, and files a ticket whose agency comes from the city's own type table, not from the model.
 
-Demo video (90 s): TODO
+Demo video (74 s): https://youtu.be/BRY_yJmX15A
 
 Built during the c0mpiled-18 hackathon (Taipei, 2026-11-11).
 
