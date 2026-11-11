@@ -172,3 +172,9 @@ onTicket((record) => {
 });
 
 server.listen(PORT, () => console.log(`FirstRing on http://localhost:${PORT}  (model ${MODEL})`));
+
+// Optional SIP softphone front door (demo): SIP_ENABLED=1, SIP_PORT=5060 by default.
+if (process.env.SIP_ENABLED === '1') {
+  const { startSip } = await import('./sip.mjs');
+  startSip({ bridgePort: PORT });
+}

@@ -136,7 +136,21 @@ Tonight's calls run over the browser. Answering a city's existing number needs a
 2. **SBC (session border controller)** at the edge: authenticates the trunk, handles NAT, encryption (TLS/SRTP) and codec negotiation.
 3. **SIP gateway + media bridge**: terminates SIP/RTP and converts 8 kHz telephone audio to the 16 kHz PCM this bridge already accepts, and the agent's 24 kHz audio back to 8 kHz. The bridge's WebSocket protocol does not change.
 4. **Handoff**: `transfer_to_human` becomes a SIP REFER (or a PBX transfer) into the city's existing specialist queue, with the AI summary attached via the CRM or a SIP header.
-5. **Status**: we have pilot-tested a SIP-to-AI voice bridge separately (SIP softphone → cloud Asterisk → voice AI). It has **never been connected to a real phone number (PSTN) or an SBC, and is not connected to FirstRing.**
+5. **Status**: we have pilot-tested a SIP-to-AI voice bridge separately (SIP softphone → cloud Asterisk → voice AI). That pilot has **never been connected to a real phone number (PSTN) or an SBC.** Tonight we added a minimal SIP endpoint directly to FirstRing (next section), also without an SBC or PSTN.
+
+#### SIP softphone demo (built tonight)
+
+`src/sip.mjs` is a minimal SIP endpoint so a softphone (Linphone, baresip) on the same network can call FirstRing directly. It is a demo, not a telephony stack:
+
+- Direct SIP over UDP to this machine. No registrar, no authentication, no SBC, no TLS/SRTP, no NAT traversal, no PSTN number.
+- One codec only: G.711 PCMU 8 kHz. Audio is converted in-process (8 → 16 kHz up, 24 → 8 kHz down) with no extra dependencies.
+- Each SIP call opens a normal WebSocket call on `/call`, so tools, validation, tickets and the ops view are the same as browser calls. Tickets show `source: "sip"`.
+
+```bash
+SIP_ENABLED=1 SIP_PORT=5070 npm start
+# then dial from a softphone on the same network:
+#   sip:311@<this-machine-ip>:5070
+```
 
 ## Run it locally
 
