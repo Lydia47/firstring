@@ -10,6 +10,18 @@ Built during the c0mpiled-18 hackathon (Taipei, 2026-11-11).
 
 ---
 
+## Call it yourself (judges: try it from your phone)
+
+FirstRing answers a real SIP call from a free softphone app — no browser needed.
+
+1. Install **Linphone** (free, [iOS](https://apps.apple.com/app/linphone/id360065638) / [Android](https://play.google.com/store/apps/details?id=org.linphone) / [desktop](https://www.linphone.org/)).
+2. Join the same network as the demo laptop (we'll share our hotspot at the table — the laptop is not reachable from the public internet).
+3. In Linphone: *Use a SIP account* → username: anything (e.g. `judge`), password: blank, domain: **the laptop IP we give you, with `:5070`** (e.g. `172.20.10.3:5070`), transport **UDP**.
+4. Dial **`311`** and report a problem in English or Spanish — e.g. *"My upstairs neighbor is blasting music"* — then give an address and borough, and say yes to the read-back.
+5. Watch the ticket appear live on the ops view (`/ops`).
+
+Use earphones or turn speakerphone off: the agent's own voice played over a loudspeaker can be picked up as the caller. This is a direct SIP demo (G.711 over UDP, no SBC, no phone number) — see [Connecting to a real 311 phone line](#connecting-to-a-real-311-phone-line-not-built-tonight).
+
 ## What happens on one call
 
 A synthetic caller (pre-recorded TTS audio, played as the microphone) reports loud music upstairs:
