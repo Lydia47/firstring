@@ -35,6 +35,20 @@ function parseArgs(argv) {
 }
 
 // ---------- audio ----------
+// Like a phone line's automatic gain control: bring every caller to the same speech level (-16 dBFS RMS).
+// The synthetic voices range from about -15 to -21 dBFS; quieter ones were often never detected as speech.
+function normalizeLevel(pcm) {
+  const n = Math.floor(pcm.length / 2);
+  let sum = 0;
+  for (let i = 0; i < n; i++) { const v = pcm.readInt16LE(i * 2); sum += v * v; }
+  const rms = Math.sqrt(sum / Math.max(1, n));
+  if (!rms) return pcm;
+  const gain = Math.min(4, (32768 * 10 ** (-16 / 20)) / rms);
+  const out = Buffer.alloc(n * 2);
+  for (let i = 0; i < n; i++) out.writeInt16LE(Math.max(-32768, Math.min(32767, Math.round(pcm.readInt16LE(i * 2) * gain))), i * 2);
+  return out;
+}
+
 function readWavPcm(file) {
   const buf = fs.readFileSync(file);
   if (buf.toString('ascii', 0, 4) !== 'RIFF') throw new Error(`not a WAV: ${file}`);
@@ -46,7 +60,7 @@ function readWavPcm(file) {
       const ch = buf.readUInt16LE(off + 10), rate = buf.readUInt32LE(off + 12), bits = buf.readUInt16LE(off + 22);
       if (ch !== 1 || rate !== 16000 || bits !== 16) console.warn(`  warn: ${path.basename(file)} is ${ch}ch ${rate}Hz ${bits}bit`);
     }
-    if (id === 'data') return buf.subarray(off + 8, Math.min(buf.length, off + 8 + size));
+    if (id === 'data') return normalizeLevel(buf.subarray(off + 8, Math.min(buf.length, off + 8 + size)));
     off += 8 + size + (size % 2);
   }
   throw new Error(`no data chunk: ${file}`);
@@ -92,6 +106,7 @@ function runCall(item, source) {
       if (last && last.role === role) last.text += text; else transcript.push({ role, text });
     };
 
+    let openingDone = false;
     let phase = 'opening'; // opening -> streaming -> listening
     let agentTextSinceCaller = '';
     let actedSinceCaller = false;
@@ -189,7 +204,8 @@ function runCall(item, source) {
           break;
         case 'turn-complete':
           if (phase === 'opening') {
-            if (agentTextSinceCaller.trim()) setTimeout(() => { if (!done) stream(utterancePcm); }, 500);
+            // the opening line's transcript can arrive after turn-complete, so start on the first turn-complete regardless
+            if (!openingDone) { openingDone = true; setTimeout(() => { if (!done) stream(utterancePcm); }, 500); }
             return;
           }
           if (actedSinceCaller || !agentTextSinceCaller.trim()) return;

@@ -2,16 +2,16 @@
   "set": "dev",
   "model": "gemini-3.1-flash-live-preview",
   "started_at": "2026-11-11T11:24:08.251Z",
-  "finished_at": null,
+  "finished_at": "2026-11-11T11:47:14.491Z",
   "counts": {
-    "filed_correct": 3,
+    "filed_correct": 5,
     "filed_wrong": 0,
-    "asked_clarification": 4,
+    "asked_clarification": 8,
     "handed_off": 0,
-    "network_error": 6,
-    "total": 13
+    "network_error": 17,
+    "total": 30
   },
-  "agency_correct": 3,
+  "agency_correct": 5,
   "calls": [
     {
       "id": "nyc-01",
@@ -435,6 +435,528 @@
         "complaint_type": "Traffic Signal Condition",
         "descriptor": "Controller",
         "agency": "DOT"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    },
+    {
+      "id": "nyc-23",
+      "expected": {
+        "complaint_type": "PLUMBING",
+        "descriptor": "WATER SUPPLY",
+        "agency": "HPD"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    },
+    {
+      "id": "nyc-25",
+      "expected": {
+        "complaint_type": "Damaged Tree",
+        "descriptor": "Branch or Limb Has Fallen Down",
+        "agency": "DPR"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    },
+    {
+      "id": "nyc-27",
+      "expected": {
+        "complaint_type": "Lead",
+        "descriptor": "Lead Kit",
+        "agency": "DEP"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "asked_clarification",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": "user Could you tell me more about the problem?",
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        },
+        {
+          "role": "caller",
+          "text": "Hi, I live in the old"
+        },
+        {
+          "role": "agent",
+          "text": "user Could you tell me more about the problem?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": null,
+      "seconds": 20.2
+    },
+    {
+      "id": "nyc-28",
+      "expected": {
+        "complaint_type": "Non-Emergency Police Matter",
+        "descriptor": "Other (complaint details)",
+        "agency": "NYPD"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "asked_clarification",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": "I understand. Could you please tell me the location the street address or intersection where this is happening?",
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        },
+        {
+          "role": "caller",
+          "text": "There's a group of"
+        },
+        {
+          "role": "agent",
+          "text": "I understand. Could you please tell me the location the street address or intersection where this is happening?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": null,
+      "seconds": 19.9
+    },
+    {
+      "id": "nyc-29",
+      "expected": {
+        "complaint_type": "APPLIANCE",
+        "descriptor": "ELECTRIC/GAS RANGE",
+        "agency": "HPD"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    },
+    {
+      "id": "nyc-30",
+      "expected": {
+        "complaint_type": "Vendor Enforcement",
+        "descriptor": "Food Vendor",
+        "agency": "DSNY"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    },
+    {
+      "id": "nyc-31",
+      "expected": {
+        "complaint_type": "Graffiti",
+        "descriptor": "Graffiti",
+        "agency": "DSNY"
+      },
+      "got": {
+        "complaint_type": "Graffiti",
+        "descriptor": "Graffiti",
+        "agency": "DSNY"
+      },
+      "bucket": "filed_correct",
+      "agency_match": true,
+      "descriptor_match": true,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        },
+        {
+          "role": "caller",
+          "text": "Someone spray painted huge bubble letters across the entire roll down gate at 620 Manhattan Avenue in Greenpoint. Brooklyn."
+        },
+        {
+          "role": "tool",
+          "text": "create_service_request {\"confirmed_by_caller\":false,\"descriptor\":\"Graffiti\",\"complaint_type\":\"Graffiti\",\"location\":\"620 MANHATTAN AVENUE\",\"borough\":\"BROOKLYN\"} -> {\"error\":\"Not filed. Read back the type and the full address and get an explicit yes first.\"}"
+        },
+        {
+          "role": "agent",
+          "text": "I'll file a graffiti complaint at 620 Manhattan Avenue, Brooklyn. Is that right?"
+        },
+        {
+          "role": "caller",
+          "text": "Yes, that's right."
+        },
+        {
+          "role": "tool",
+          "text": "create_service_request {\"complaint_type\":\"Graffiti\",\"confirmed_by_caller\":true,\"location\":\"620 MANHATTAN AVENUE\",\"descriptor\":\"Graffiti\",\"borough\":\"BROOKLYN\"} -> {\"request_id\":\"311-38784\",\"agency\":\"DSNY\",\"status\":\"Open\",\"complaint_type\":\"Graffiti\",\"descriptor\":\"Graffiti\"}"
+        }
+      ],
+      "seconds_to_ticket": 27.339,
+      "note": null,
+      "seconds": 27.4
+    },
+    {
+      "id": "nyc-34",
+      "expected": {
+        "complaint_type": "Panhandling",
+        "descriptor": "N/A",
+        "agency": "NYPD"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    },
+    {
+      "id": "nyc-36",
+      "expected": {
+        "complaint_type": "Water Maintenance",
+        "descriptor": "Fire Hydrant Running",
+        "agency": "DEP"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    },
+    {
+      "id": "nyc-37",
+      "expected": {
+        "complaint_type": "Sidewalk Condition",
+        "descriptor": "Broken Sidewalk",
+        "agency": "DOT"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "asked_clarification",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": "I'm not quite sure what the problem is. Could you tell me more about this concrete? Are you talking about a sidewalk, a street, or something else?",
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        },
+        {
+          "role": "caller",
+          "text": "the concrete flat out"
+        },
+        {
+          "role": "tool",
+          "text": "find_complaint_type {\"query\":\"concrete flat out\"} -> {\"candidates\":[{\"complaint_type\":\"Street Light Condition\",\"definition\":\"Out, broken, or knocked-down street light fixtures, or exposed wiring on public lampposts.\",\"agency\":\"DOT\",\"descriptors\":[\"Street Light Out\",\"Multiple Street Lights Out\",\"Traffic Signal Light\",\"Lamppost Wire Exposed\",\"Lamppost Knocked Down\",\"Street Light Dayburning\"]},{\"complaint_type\":\"Missed Collection\",\"definition\":\"Uncollected curbside trash, recycling, or compost set out properly by residents for scheduled sanitation collection.\",\"agency\":\"DSNY\",\"descriptors\":[\"Trash\",\"Compost\",\"Bulky Trash\",\"Recycling - Paper/Metal/Glass/Rigid Plastic\",\"Bulky Recycling\",\"Recycling - Paper\"]},{\"complaint_type\":\"Elevator\",\"definition\":\"Malfunctioning, dangerous, or out-of-service passenger or freight elevators in residential or commercial buildings.\",\"agency\":\"DOB\",\"descriptors\":[\"Elevator - Single Device On Property/No Alternate Service\",\"Elevator - Multiple Devices On Property\"]},{\"complaint_type\":\"Residential Disposal Complaint\",\"definition\":\"Residential waste placement violations, such as unsecured trash bins or setting waste out at unpermitted times.\",\"agency\":\"DSNY\",\"descriptors\":[\"Trash or Recycling Not Secure\",\"Bin Not Used\",\"Waste Not Separated\",\"Waste Set Out Too Early or Too Late\",\"Waste Left in Front of Other Residence\",\"Storage Area Not Provided\"]},{\"complaint_type\":\"Broken Parking Meter\",\"definition\":\"Malfunctioning, damaged, fast-timer, or out-of-order street parking meters, managed by DOT.\",\"agency\":\"DOT\",\"descriptors\":[\"Out of Order\",\"Coin or Card Did Not Register\",\"No Receipt\",\"Timer Defect - Fast/Fail\",\"Bent/Loose\",\"Credit Card Stuck in Meter\"]}],\"clarify\":[{\"group\":\"trash\",\"types\":[\"Dirty Condition\",\"Illegal Dumping\",\"Missed Collection\"],\"ask_caller\":\"Was it set out for pickup and missed, did someone dump large items, or is it general litter?\",\"rule\":\"Set out and not collected→Missed Collection; bulk items/debris dumped→Illegal Dumping; litter, overflowing bags→Dirty Condition.\"}]}"
+        },
+        {
+          "role": "agent",
+          "text": "I'm not quite sure what the problem is. Could you tell me more about this concrete? Are you talking about a sidewalk, a street, or something else?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": null,
+      "seconds": 19.9
+    },
+    {
+      "id": "nyc-38",
+      "expected": {
+        "complaint_type": "Dead/Dying Tree",
+        "descriptor": "Planted More Than 2 Years Ago",
+        "agency": "DPR"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    },
+    {
+      "id": "nyc-39",
+      "expected": {
+        "complaint_type": "Root/Sewer/Sidewalk Condition",
+        "descriptor": "Trees and Sidewalks Program",
+        "agency": "DPR"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    },
+    {
+      "id": "nyc-41",
+      "expected": {
+        "complaint_type": "Overgrown Tree/Branches",
+        "descriptor": "Hitting Building",
+        "agency": "DPR"
+      },
+      "got": {
+        "complaint_type": "Overgrown Tree/Branches",
+        "descriptor": "Hitting Building",
+        "agency": "DPR"
+      },
+      "bucket": "filed_correct",
+      "agency_match": true,
+      "descriptor_match": true,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        },
+        {
+          "role": "caller",
+          "text": "High tree limbs are aggressively scraping and banging against my bedroom window whenever the wind picks up at 310 West 99th Street in Manhatten."
+        },
+        {
+          "role": "tool",
+          "text": "find_complaint_type {\"query\":\"tree limbs hitting window\"} -> {\"candidates\":[{\"complaint_type\":\"Damaged Tree\",\"definition\":\"Cracked, leaning, or fallen tree branches or entire trees on public street or park property.\",\"agency\":\"DPR\",\"descriptors\":[\"Branch or Limb Has Fallen Down\",\"Branch Cracked and Will Fall\",\"Entire Tree Has Fallen Down\",\"Tree Leaning/Uprooted\",\"Tree Alive - in Poor Condition\",\"Tree Trunk Split\"]},{\"complaint_type\":\"Overgrown Tree/Branches\",\"definition\":\"Live tree branches growing excessively and hitting utility lines, buildings, or obstructing public streets.\",\"agency\":\"DPR\",\"descriptors\":[\"Hitting Building\",\"Blocking Street\",\"Dead Branches in Tree\",\"Hitting Power Lines\",\"Hitting Phone/Cable Lines\",\"Clear Street Light\"]},{\"complaint_type\":\"DOOR/WINDOW\",\"definition\":\"Damaged, broken, or defective doors, window panes, or frames inside residential rental apartments.\",\"agency\":\"HPD\",\"descriptors\":[\"DOOR\",\"WINDOW FRAME\",\"DOOR FRAME\",\"WINDOW PANE\",\"DOOR TO DUMBWAITER\"]},{\"complaint_type\":\"Illegal Tree Damage\",\"definition\":\"Damage to trunk, branches, roots, unauthorized tree removal, or bikes chained to street trees, managed by DPR.\",\"agency\":\"DPR\",\"descriptors\":[\"Trunk Damaged\",\"Branches Damaged\",\"Roots Damaged\",\"Unauthorized Tree Removal\",\"Bicycle Chained to Tree\",\"Unauthorized Tree Pruning\"]},{\"complaint_type\":\"New Tree Request\",\"definition\":\"Requests for planting a new street tree at a specific property address, handled by DPR.\",\"agency\":\"DPR\",\"descriptors\":[\"For One Address\"]}],\"clarify\":[{\"group\":\"trees\",\"types\":[\"Damaged Tree\",\"Dead/Dying Tree\",\"Overgrown Tree/Branches\",\"Root/Sewer/Sidewalk Condition\"],\"ask_caller\":\"Is the tree broken or fallen, dead, growing into something, or are its roots lifting the sidewalk?\",\"rule\":\"Broken/fallen→Damaged Tree; dead→Dead/Dying Tree; hitting building/wires→Overgrown Tree/Branches; roots lifting pavement→Root/Sewer/Sidewalk Condition.\"}]}"
+        },
+        {
+          "role": "agent",
+          "text": "I'll file an overgrown tree branches complaint at 310 West 99th Street in Manhattan. Is that right?"
+        },
+        {
+          "role": "caller",
+          "text": "Yes, that's right."
+        },
+        {
+          "role": "tool",
+          "text": "create_service_request {\"confirmed_by_caller\":true,\"location\":\"310 WEST 99 STREET\",\"borough\":\"MANHATTAN\",\"descriptor\":\"Hitting Building\",\"complaint_type\":\"Overgrown Tree/Branches\"} -> {\"request_id\":\"311-39061\",\"agency\":\"DPR\",\"status\":\"Open\",\"complaint_type\":\"Overgrown Tree/Branches\",\"descriptor\":\"Hitting Building\"}"
+        }
+      ],
+      "seconds_to_ticket": 24.536,
+      "note": null,
+      "seconds": 24.5
+    },
+    {
+      "id": "nyc-43",
+      "expected": {
+        "complaint_type": "Traffic",
+        "descriptor": "Truck Route Violation",
+        "agency": "NYPD"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "asked_clarification",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": "I understand that you're experiencing a problem and I want to help. Could you please describe the issue in a little more detail for me so I can figure out the best way to assist?",
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        },
+        {
+          "role": "caller",
+          "text": "不 欢 迎 。"
+        },
+        {
+          "role": "tool",
+          "text": "find_complaint_type {\"query\":\"not welcome\"} -> {\"candidates\":[],\"note\":\"No official type matched. If the problem is not a 311 complaint type, transfer to a human.\"}"
+        },
+        {
+          "role": "agent",
+          "text": "I understand that you're experiencing a problem and I want to help. Could you please describe the issue in a little more detail for me so I can figure out the best way to assist?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": null,
+      "seconds": 28.6
+    },
+    {
+      "id": "nyc-44",
+      "expected": {
+        "complaint_type": "Maintenance or Facility",
+        "descriptor": "Structure - Outdoors",
+        "agency": "DPR"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    },
+    {
+      "id": "nyc-45",
+      "expected": {
+        "complaint_type": "General Construction/Plumbing",
+        "descriptor": "Building Permit - None",
+        "agency": "DOB"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    },
+    {
+      "id": "nyc-47",
+      "expected": {
+        "complaint_type": "ELECTRIC",
+        "descriptor": "OUTLET/SWITCH",
+        "agency": "HPD"
       },
       "got": {
         "complaint_type": null,
