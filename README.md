@@ -79,7 +79,22 @@ FIRSTRING_API_TOKEN=... node scripts/agent-demo.mjs --rest   # same flow over RE
 
 ## Eval
 
-EVAL_RESULTS
+We built an automated eval harness (`eval/run.mjs`, details in `eval/README.md`): 50 **synthetic calls** (generated caller sentences, each with a NYC address, voiced by 10 macOS TTS voices) labeled with real complaint types from NYC Open Data, split into a 30-call dev set and a 20-call held-out test set. Each call goes through the real agent end to end over the same WebSocket bridge; the runner confirms read-backs with a recorded "yes", and records one of five outcomes.
+
+**Results tonight — honestly, the harness did not work well enough to give an accuracy number:**
+
+| Set | Filed, correct type | Filed, wrong type | Agent asked a clarifying question | Handed to a person | No response / network |
+|---|---|---|---|---|---|
+| dev (30) | 5 | 0 | 8 | 0 | 17 |
+| test (20, run once) | 0 | 0 | 12 | 0 | 8 |
+
+What this does and does not show:
+- **Every call that was filed had the correct type and agency (5/5)** — all five were the one TTS voice (Samantha) the model reliably heard.
+- **"No response"** means the Live API never detected the caller's speech in the injected audio (no transcript at all), for the other nine TTS voices far more often. We tried lead-in silence, level normalization and a turn-timing fix; none solved it tonight. The same pipeline works every time from the browser call screen, so this is an audio-injection problem in the harness, not a classification result.
+- **"Asked a clarifying question"** is the designed behavior for confusable types (e.g. *"Does the car still have license plates?"*); the runner does not yet simulate a caller answering it, so those calls end there. Several of these also show the model mishearing the TTS audio.
+- Next step: a simulated caller that answers clarifying questions, and real (non-TTS) recordings.
+
+Raw per-call results: `eval/results-dev.json`, `eval/results-test.json`.
 
 ## The problem
 
