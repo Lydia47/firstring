@@ -78,6 +78,7 @@ wss.on('connection', async (ws, req) => {
   let session, setupSeen = false, kicked = false;
   const kickoff = () => {
     if (kicked) return; kicked = true;
+    log('setup complete, opening');
     send({ type: 'ready', call_id: ctx.call_id });
     session.sendClientContent({ turns: [{ role: 'user', parts: [{ text: '(call connected)' }] }], turnComplete: true });
   };
@@ -137,7 +138,7 @@ wss.on('connection', async (ws, req) => {
       }
       if (sc.outputTranscription?.text) send({ type: 'agent', text: sc.outputTranscription.text });
       if (sc.interrupted) send({ type: 'interrupted' });
-      if (sc.turnComplete) send({ type: 'turn-complete' });
+      if (sc.turnComplete) { send({ type: 'turn-complete' }); log('turn complete'); }
     }
     for (const fc of m.toolCall?.functionCalls || []) {
       if (!session) continue;
