@@ -107,6 +107,22 @@ What is done tonight, and what a real deployment still needs — honestly:
 | Data retention | No call audio stored; only ticket fields | A written retention policy agreed with the city (how long transcripts/ticket fields are kept, who can see them) |
 | Ops | `npm start` one-command start | Monitoring, alerting, multi-region failover |
 
+### Connecting to a real 311 phone line (not built tonight)
+
+Tonight's calls run over the browser. Answering a city's existing number needs a telephony path in front of the same bridge — none of this is implemented in this repo:
+
+```
+ City 311 number ─► city PBX / carrier ─► SBC ─► SIP trunk ─► SIP gateway ─► media bridge ─► FirstRing bridge
+   (unchanged)        forwards all calls,     security edge,   (TLS/SRTP)    (e.g. Asterisk)   8 kHz G.711 ⇄      (src/server.mjs)
+                      or overflow/after-hours  NAT, codecs                                       16/24 kHz PCM
+```
+
+1. **Number stays the same.** The city (or its carrier) forwards calls to us — all of them, or only overflow and after-hours, which is the easiest first step.
+2. **SBC (session border controller)** at the edge: authenticates the trunk, handles NAT, encryption (TLS/SRTP) and codec negotiation.
+3. **SIP gateway + media bridge**: terminates SIP/RTP and converts 8 kHz telephone audio to the 16 kHz PCM this bridge already accepts, and the agent's 24 kHz audio back to 8 kHz. The bridge's WebSocket protocol does not change.
+4. **Handoff**: `transfer_to_human` becomes a SIP REFER (or a PBX transfer) into the city's existing specialist queue, with the AI summary attached via the CRM or a SIP header.
+5. **Status**: we have pilot-tested a SIP-to-AI voice bridge separately (SIP softphone → cloud Asterisk → voice AI). It has **never been connected to a real phone number (PSTN) or an SBC, and is not connected to FirstRing.**
+
 ## Run it locally
 
 Requires Node 20+ and a Gemini API key.

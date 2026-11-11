@@ -1,0 +1,227 @@
+{
+  "set": "test",
+  "model": "gemini-3.1-flash-live-preview",
+  "started_at": "2026-11-11T11:59:22.000Z",
+  "finished_at": null,
+  "counts": {
+    "filed_correct": 0,
+    "filed_wrong": 0,
+    "asked_clarification": 3,
+    "handed_off": 0,
+    "network_error": 4,
+    "total": 7
+  },
+  "agency_correct": 0,
+  "calls": [
+    {
+      "id": "nyc-03",
+      "expected": {
+        "complaint_type": "Illegal Parking",
+        "descriptor": "Blocked Hydrant",
+        "agency": "NYPD"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "asked_clarification",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": "Thank you for calling. Is it blocking your driveway? Is it an abandoned vehicle, illegal parking, or something else?",
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        },
+        {
+          "role": "caller",
+          "text": "a black sedan is parked"
+        },
+        {
+          "role": "agent",
+          "text": "Thank you for calling. Is it blocking your driveway? Is it an abandoned vehicle, illegal parking, or something else?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": null,
+      "seconds": 22.2
+    },
+    {
+      "id": "nyc-04",
+      "expected": {
+        "complaint_type": "Blocked Driveway",
+        "descriptor": "No Access",
+        "agency": "NYPD"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "asked_clarification",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": "I understand you have a blocked driveway. Can you give me the street address and the borough?",
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        },
+        {
+          "role": "caller",
+          "text": "I'm trying to get to"
+        },
+        {
+          "role": "tool",
+          "text": "find_complaint_type {\"query\":\"I'm trying to get to work and someone parked in front of my driveway\"} -> {\"candidates\":[{\"complaint_type\":\"Illegal Parking\",\"definition\":\"Parking violations on public streets like blocked hydrants, crosswalks, or posted sign violations, enforced by NYPD.\",\"agency\":\"NYPD\",\"descriptors\":[\"Blocked Hydrant\",\"Posted Parking Sign Violation\",\"Blocked Sidewalk\",\"Commercial Overnight Parking\",\"Blocked Crosswalk\",\"Double Parked Blocking Traffic\"]},{\"complaint_type\":\"Blocked Driveway\",\"definition\":\"Vehicles blocking partial or full access to a private driveway on public streets.\",\"agency\":\"NYPD\",\"descriptors\":[\"No Access\",\"Partial Access\"]},{\"complaint_type\":\"Noise - Park\",\"definition\":\"Excessive music, shouting, or loud parties originating within public parks or green spaces.\",\"agency\":\"NYPD\",\"descriptors\":[\"Loud Music/Party\",\"Loud Talking\"]},{\"complaint_type\":\"Violation of Park Rules\",\"definition\":\"Unlicensed vendors, unauthorized BBQs, or unsafe activities occurring within park grounds, handled by DPR (unlike public streets).\",\"agency\":\"DPR\",\"descriptors\":[\"Unlicensed Vendors\",\"Obstructing Public Use\",\"BBQ Outside Authorized Area\",\"Unsafe Use of Playground\",\"Smoking\",\"Biking/Rollerblading off Path\"]},{\"complaint_type\":\"Animal in a Park\",\"definition\":\"Off-leash dogs, wildlife sightings, or dead/injured animals located specifically within public parks, handled by DPR.\",\"agency\":\"DPR\",\"descriptors\":[\"Dog Off Leash\",\"Injured Wildlife\",\"Dead Animal\",\"Wildlife Sighting\",\"Removing Wildlife\",\"Domestic Strays\"]}],\"clarify\":[{\"group\":\"parking\",\"types\":[\"Illegal Parking\",\"Blocked Driveway\"],\"ask_caller\":\"Is the car blocking a driveway, or parked illegally somewhere else, like at a hydrant, crosswalk or against the signs?\",\"rule\":\"Driveway→Blocked Driveway; everything else→Illegal Parking.\"},{\"group\":\"noise\",\"types\":[\"Noise - Residential\",\"Noise - Street/Sidewalk\",\"Noise - Commercial\",\"Noise - Park\",\"Noise - Vehicle\",\"Noise\"],\"ask_caller\":\"Where is the noise coming from: inside a home, a business, the street or sidewalk, a park, a vehicle, or construction or equipment?\",\"rule\":\"Home→Residential; business/bar→Commercial; street/sidewalk crowd→Street/Sidewalk; park→Park; car/truck→Vehicle; construction, alarms, equipment, barking dog→Noise (DEP).\"}]}"
+        },
+        {
+          "role": "agent",
+          "text": "I understand you have a blocked driveway. Can you give me the street address and the borough?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": null,
+      "seconds": 20.4
+    },
+    {
+      "id": "nyc-06",
+      "expected": {
+        "complaint_type": "UNSANITARY CONDITION",
+        "descriptor": "PESTS",
+        "agency": "HPD"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    },
+    {
+      "id": "nyc-09",
+      "expected": {
+        "complaint_type": "Noise - Commercial",
+        "descriptor": "Loud Music/Party",
+        "agency": "NYPD"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    },
+    {
+      "id": "nyc-12",
+      "expected": {
+        "complaint_type": "Illegal Dumping",
+        "descriptor": "Removal Request",
+        "agency": "DSNY"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    },
+    {
+      "id": "nyc-14",
+      "expected": {
+        "complaint_type": "Homeless Person Assistance",
+        "descriptor": "Non-Chronic",
+        "agency": "DHS"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "asked_clarification",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": "I'm sorry, I didn't quite catch that. Could you tell me again what the problem is?",
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        },
+        {
+          "role": "caller",
+          "text": "there's a net of visual"
+        },
+        {
+          "role": "agent",
+          "text": "I'm sorry, I didn't quite catch that. Could you tell me again what the problem is?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": null,
+      "seconds": 19.1
+    },
+    {
+      "id": "nyc-16",
+      "expected": {
+        "complaint_type": "FLOORING/STAIRS",
+        "descriptor": "FLOOR",
+        "agency": "HPD"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    }
+  ]
+}
