@@ -57,7 +57,7 @@ function newId(prefix) {
 // ---------- find_complaint_type ----------
 const STOP = new Set('a an the of in on at to is it my there and or for with from be are was has have i me we our this that its not no'.split(' '));
 const SYNONYMS = { streetlight: 'street light', streetlights: 'street light', lamppost: 'street light lamppost', potholes: 'pothole', pothole: 'pothole street condition', rats: 'rodent', mice: 'rodent', roaches: 'pest', trash: 'garbage collection', heater: 'heat', radiator: 'heat' };
-const expand = (s) => (s || '').toLowerCase().replace(/[a-z]+/g, (w) => SYNONYMS[w] || w);
+const expand = (s) => (s || '').toLowerCase().replace(/[a-z]+/g, (w) => SYNONYMS[w] || SYNONYMS[w.replace(/s$/, '')] || w);
 const words = (s) => expand(s).replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter((w) => w.length > 2 && !STOP.has(w));
 const stem = (w) => w.replace(/(ing|ed|es|s)$/, '');
 const INDEX = TAXONOMY.map((t) => ({

@@ -4,14 +4,14 @@
   "started_at": "2026-11-11T11:24:08.251Z",
   "finished_at": null,
   "counts": {
-    "filed_correct": 1,
+    "filed_correct": 3,
     "filed_wrong": 0,
-    "asked_clarification": 0,
+    "asked_clarification": 4,
     "handed_off": 0,
-    "network_error": 0,
-    "total": 1
+    "network_error": 5,
+    "total": 12
   },
-  "agency_correct": 1,
+  "agency_correct": 3,
   "calls": [
     {
       "id": "nyc-01",
@@ -58,6 +58,376 @@
       "seconds_to_ticket": 25.586,
       "note": null,
       "seconds": 25.8
+    },
+    {
+      "id": "nyc-02",
+      "expected": {
+        "complaint_type": "Noise - Street/Sidewalk",
+        "descriptor": "Loud Music/Party",
+        "agency": "NYPD"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    },
+    {
+      "id": "nyc-05",
+      "expected": {
+        "complaint_type": "HEAT/HOT WATER",
+        "descriptor": "ENTIRE BUILDING",
+        "agency": "HPD"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "asked_clarification",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": "I understand your radiators aren't working. To make sure I file the right report, is this inside your apartment or building? And is it no heat or hot water, or is the radiator broken?",
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        },
+        {
+          "role": "caller",
+          "text": "the radiator's are stone"
+        },
+        {
+          "role": "tool",
+          "text": "find_complaint_type {\"query\":\"radiators are cold\"} -> {\"candidates\":[{\"complaint_type\":\"PLUMBING\",\"definition\":\"Defective plumbing fixtures like sinks, toilets, tubs, or radiators inside residential rental properties.\",\"agency\":\"HPD\",\"descriptors\":[\"WATER SUPPLY\",\"BASIN/SINK\",\"BATHTUB/SHOWER\",\"TOILET\",\"RADIATOR\",\"STEAM PIPE/RISER\"]}],\"clarify\":[{\"group\":\"water-in-building\",\"types\":[\"HEAT/HOT WATER\",\"PLUMBING\",\"WATER LEAK\",\"Water Maintenance\"],\"ask_caller\":\"Is this inside your apartment or building, or out on the street? And is it no heat or hot water, a broken fixture, or water actively leaking?\",\"rule\":\"Street, hydrant, water main, dirty tap water→Water Maintenance (DEP). Inside: no heat/hot water→HEAT/HOT WATER; broken sink/toilet/no water supply→PLUMBING; water coming through ceiling/walls→WATER LEAK (all HPD).\"}]}"
+        },
+        {
+          "role": "agent",
+          "text": "I understand your radiators aren't working. To make sure I file the right report, is this inside your apartment or building? And is it no heat or hot water, or is the radiator broken?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": null,
+      "seconds": 21.2
+    },
+    {
+      "id": "nyc-07",
+      "expected": {
+        "complaint_type": "Abandoned Vehicle",
+        "descriptor": "With License Plate",
+        "agency": "NYPD"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    },
+    {
+      "id": "nyc-08",
+      "expected": {
+        "complaint_type": "Dirty Condition",
+        "descriptor": "Trash",
+        "agency": "DSNY"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "asked_clarification",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": "I understand you have raw sewage backing up inside your building. What's the address and borough where this is happening?",
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        },
+        {
+          "role": "caller",
+          "text": "florist back are turned right"
+        },
+        {
+          "role": "tool",
+          "text": "find_complaint_type {\"query\":\"florist back are turned right\"} -> {\"candidates\":[{\"complaint_type\":\"Indoor Sewage\",\"definition\":\"Raw sewage backing up or leaking inside a residential or commercial building, handled by DOHMH.\",\"agency\":\"DOHMH\",\"descriptors\":[\"Sewage Leak\"]}]}"
+        },
+        {
+          "role": "agent",
+          "text": "I understand you have raw sewage backing up inside your building. What's the address and borough where this is happening?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": null,
+      "seconds": 18.5
+    },
+    {
+      "id": "nyc-10",
+      "expected": {
+        "complaint_type": "Street Condition",
+        "descriptor": "Pothole",
+        "agency": "DOT"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    },
+    {
+      "id": "nyc-11",
+      "expected": {
+        "complaint_type": "Street Light Condition",
+        "descriptor": "Street Light Out",
+        "agency": "DOT"
+      },
+      "got": {
+        "complaint_type": "Street Light Condition",
+        "descriptor": "Street Light Out",
+        "agency": "DOT"
+      },
+      "bucket": "filed_correct",
+      "agency_match": true,
+      "descriptor_match": true,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        },
+        {
+          "role": "caller",
+          "text": "The lamppost right across from 13520 Liberty Avenue in Jamaica. Queens is totally blacked out, leaving the whole corner pitch dark."
+        },
+        {
+          "role": "agent",
+          "text": "I'll file a street light condition report at 135-20 Liberty Avenue, Queens. Is that right?"
+        },
+        {
+          "role": "caller",
+          "text": "Yes, that's right."
+        },
+        {
+          "role": "tool",
+          "text": "create_service_request {\"descriptor\":\"Street Light Out\",\"borough\":\"QUEENS\",\"complaint_type\":\"Street Light Condition\",\"confirmed_by_caller\":true,\"location\":\"135-20 LIBERTY AVENUE\"} -> {\"request_id\":\"311-54445\",\"agency\":\"DOT\",\"status\":\"Open\",\"complaint_type\":\"Street Light Condition\",\"descriptor\":\"Street Light Out\"}"
+        }
+      ],
+      "seconds_to_ticket": 27.421,
+      "note": null,
+      "seconds": 27.4
+    },
+    {
+      "id": "nyc-13",
+      "expected": {
+        "complaint_type": "PAINT/PLASTER",
+        "descriptor": "WALL",
+        "agency": "HPD"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    },
+    {
+      "id": "nyc-15",
+      "expected": {
+        "complaint_type": "Derelict Vehicles",
+        "descriptor": "Derelict Vehicles",
+        "agency": "DSNY"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "asked_clarification",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": "I can help with that. Does the car still have license plates on it? Also, what's the street address and borough?",
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        },
+        {
+          "role": "caller",
+          "text": "Austrian burned out car frame with no plate"
+        },
+        {
+          "role": "tool",
+          "text": "find_complaint_type {\"query\":\"burned out car frame with no plate\"} -> {\"candidates\":[{\"complaint_type\":\"Abandoned Vehicle\",\"definition\":\"Unattended motor vehicles left on public streets that still have license plates attached.\",\"agency\":\"NYPD\",\"descriptors\":[\"With License Plate\"]},{\"complaint_type\":\"Dirty Condition\",\"definition\":\"Litter, trash, dog waste, or broken glass on public streets and sidewalks requiring sanitation cleanup.\",\"agency\":\"DSNY\",\"descriptors\":[\"Trash\",\"Dog Waste\",\"Dirt or Gravel\",\"Broken Glass\",\"Syringes\",\"Debris from Car Accident\"]},{\"complaint_type\":\"PAINT/PLASTER\",\"definition\":\"Damaged, peeling, or cracked paint and plaster on interior walls, ceilings, or doors in rental units.\",\"agency\":\"HPD\",\"descriptors\":[\"WALL\",\"CEILING\",\"WINDOW/FRAME\",\"CABINET\",\"DOOR/FRAME\",\"RADIATOR\"]},{\"complaint_type\":\"Noise - Commercial\",\"definition\":\"Excessive music, shouting, or noise originating from commercial businesses, bars, or restaurants.\",\"agency\":\"NYPD\",\"descriptors\":[\"Loud Music/Party\",\"Banging/Pounding\",\"Loud Talking\",\"Car/Truck Music\",\"Car/Truck Horn\",\"Loud Television\"]},{\"complaint_type\":\"Noise - Vehicle\",\"definition\":\"Noise coming from a motor vehicle on the street: car or truck music, horns, or an engine left idling.\",\"agency\":\"NYPD\",\"descriptors\":[\"Car/Truck Music\",\"Car/Truck Horn\",\"Engine Idling\"]}],\"clarify\":[{\"group\":\"vehicle\",\"types\":[\"Abandoned Vehicle\",\"Derelict Vehicles\"],\"ask_caller\":\"Does the car still have license plates on it?\",\"rule\":\"Plates on→Abandoned Vehicle (NYPD); no plates or stripped/junked→Derelict Vehicles (DSNY).\"},{\"group\":\"trash\",\"types\":[\"Dirty Condition\",\"Illegal Dumping\",\"Missed Collection\"],\"ask_caller\":\"Was it set out for pickup and missed, did someone dump large items, or is it general litter?\",\"rule\":\"Set out and not collected→Missed Collection; bulk items/debris dumped→Illegal Dumping; litter, overflowing bags→Dirty Condition.\"},{\"group\":\"noise\",\"types\":[\"Noise - Residential\",\"Noise - Street/Sidewalk\",\"Noise - Commercial\",\"Noise - Park\",\"Noise - Vehicle\",\"Noise\"],\"ask_caller\":\"Where is the noise coming from: inside a home, a business, the street or sidewalk, a park, a vehicle, or construction or equipment?\",\"rule\":\"Home→Residential; business/bar→Commercial; street/sidewalk crowd→Street/Sidewalk; park→Park; car/truck→Vehicle; construction, alarms, equipment, barking dog→Noise (DEP).\"}]}"
+        },
+        {
+          "role": "agent",
+          "text": "I can help with that. Does the car still have license plates on it? Also, what's the street address and borough?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": null,
+      "seconds": 26.4
+    },
+    {
+      "id": "nyc-18",
+      "expected": {
+        "complaint_type": "Encampment",
+        "descriptor": "N/A",
+        "agency": "NYPD"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    },
+    {
+      "id": "nyc-20",
+      "expected": {
+        "complaint_type": "Noise - Vehicle",
+        "descriptor": "Car/Truck Music",
+        "agency": "NYPD"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "asked_clarification",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": "I can help with that. Is the SUV blocking a driveway, or parked illegally somewhere else, like at a hydrant, crosswalk or against the signs? And what's the street address or intersection, and the borough?",
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        },
+        {
+          "role": "caller",
+          "text": "some SUV park near rose of"
+        },
+        {
+          "role": "tool",
+          "text": "find_complaint_type {\"query\":\"large vehicle parked on the street\"} -> {\"candidates\":[{\"complaint_type\":\"Illegal Parking\",\"definition\":\"Parking violations on public streets like blocked hydrants, crosswalks, or posted sign violations, enforced by NYPD.\",\"agency\":\"NYPD\",\"descriptors\":[\"Blocked Hydrant\",\"Posted Parking Sign Violation\",\"Blocked Sidewalk\",\"Commercial Overnight Parking\",\"Blocked Crosswalk\",\"Double Parked Blocking Traffic\"]},{\"complaint_type\":\"Noise - Vehicle\",\"definition\":\"Noise coming from a motor vehicle on the street: car or truck music, horns, or an engine left idling.\",\"agency\":\"NYPD\",\"descriptors\":[\"Car/Truck Music\",\"Car/Truck Horn\",\"Engine Idling\"]},{\"complaint_type\":\"Violation of Park Rules\",\"definition\":\"Unlicensed vendors, unauthorized BBQs, or unsafe activities occurring within park grounds, handled by DPR (unlike public streets).\",\"agency\":\"DPR\",\"descriptors\":[\"Unlicensed Vendors\",\"Obstructing Public Use\",\"BBQ Outside Authorized Area\",\"Unsafe Use of Playground\",\"Smoking\",\"Biking/Rollerblading off Path\"]},{\"complaint_type\":\"Street Sign - Damaged\",\"definition\":\"Existing street, parking, or stop signs that are physically damaged or bent, managed by DOT (not missing/dangling).\",\"agency\":\"DOT\",\"descriptors\":[\"Other/Unknown\",\"No Parking, Standing, Stopping\",\"Stop\",\"Bus Stop\",\"St Name - Attached to Pole\",\"Street Cleaning - ASP\"]},{\"complaint_type\":\"Street Sign - Missing\",\"definition\":\"Street, parking, or stop signs that are completely missing from poles, managed by DOT.\",\"agency\":\"DOT\",\"descriptors\":[\"No Parking, Standing, Stopping\",\"Other/Unknown\",\"Stop\",\"Street Cleaning - ASP\",\"St Name - Attached to Pole\",\"Bus Stop\"]}],\"clarify\":[{\"group\":\"parking\",\"types\":[\"Illegal Parking\",\"Blocked Driveway\"],\"ask_caller\":\"Is the car blocking a driveway, or parked illegally somewhere else, like at a hydrant, crosswalk or against the signs?\",\"rule\":\"Driveway→Blocked Driveway; everything else→Illegal Parking.\"},{\"group\":\"noise\",\"types\":[\"Noise - Residential\",\"Noise - Street/Sidewalk\",\"Noise - Commercial\",\"Noise - Park\",\"Noise - Vehicle\",\"Noise\"],\"ask_caller\":\"Where is the noise coming from: inside a home, a business, the street or sidewalk, a park, a vehicle, or construction or equipment?\",\"rule\":\"Home→Residential; business/bar→Commercial; street/sidewalk crowd→Street/Sidewalk; park→Park; car/truck→Vehicle; construction, alarms, equipment, barking dog→Noise (DEP).\"}]}"
+        },
+        {
+          "role": "agent",
+          "text": "I can help with that. Is the SUV blocking a driveway, or parked illegally somewhere else, like at a hydrant, crosswalk or against the signs? And what's the street address or intersection, and the borough?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": null,
+      "seconds": 20.9
+    },
+    {
+      "id": "nyc-21",
+      "expected": {
+        "complaint_type": "WATER LEAK",
+        "descriptor": "HEAVY FLOW",
+        "agency": "HPD"
+      },
+      "got": {
+        "complaint_type": "WATER LEAK",
+        "descriptor": "HEAVY FLOW",
+        "agency": "HPD"
+      },
+      "bucket": "filed_correct",
+      "agency_match": true,
+      "descriptor_match": true,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        },
+        {
+          "role": "caller",
+          "text": "Water is pouring down like a waterfall through my bathroom ceiling right now at 160 Bleeker Street in Greenwich Village. Manhattan."
+        },
+        {
+          "role": "tool",
+          "text": "find_complaint_type {\"query\":\"Water is pouring down like a waterfall through my bathroom ceiling right now\"} -> {\"candidates\":[{\"complaint_type\":\"HEAT/HOT WATER\",\"definition\":\"Inadequate heat or hot water supply in residential rental apartments or entire residential buildings.\",\"agency\":\"HPD\",\"descriptors\":[\"ENTIRE BUILDING\",\"APARTMENT ONLY\"]},{\"complaint_type\":\"WATER LEAK\",\"definition\":\"Active water leaks, damp spots, or heavy water flows inside residential rental units.\",\"agency\":\"HPD\",\"descriptors\":[\"HEAVY FLOW\",\"SLOW LEAK\",\"DAMP SPOT\"]},{\"complaint_type\":\"Water Maintenance\",\"definition\":\"Street water infrastructure: running or leaking fire hydrants, water main leaks, or dirty tap water (DEP). Replaced \\\"Water System\\\" in Aug 2026.\",\"agency\":\"DEP\",\"descriptors\":[\"Fire Hydrant Running\",\"Dirty Water\",\"Fire Hydrant Running Full\",\"Leak\",\"Fire Hydrant Leaking\",\"Fire Hydrant Emergency\"]},{\"complaint_type\":\"Water Conservation\",\"definition\":\"Unauthorized fire hydrant use, leaking water meters, or general water waste, handled by DEP.\",\"agency\":\"DEP\",\"descriptors\":[\"Illegal Use Of A Hydrant (CIN)\",\"Fire Hydrant\",\"Water Meter Broken/Leaking\",\"Water Meter Broken/Leaking - Private Residence (CMR)\",\"Water Waste\",\"Water Meter Broken/Leaking - Other (CMO)\"]},{\"complaint_type\":\"Standing Water\",\"definition\":\"Stagnant water in pools, ground puddles, or large containers creating mosquito hazards, handled by DOHMH.\",\"agency\":\"DOHMH\",\"descriptors\":[\"Other - Explain Below\",\"Swimming Pool - Unmaintained\",\"Puddle in Ground\",\"Container - Over 5 Gallons\",\"Puddle on Sidewalk\",\"Sewer or Drain\"]}],\"clarify\":[{\"group\":\"water-in-building\",\"types\":[\"HEAT/HOT WATER\",\"PLUMBING\",\"WATER LEAK\",\"Water Maintenance\"],\"ask_caller\":\"Is this inside your apartment or building, or out on the street? And is it no heat or hot water, a broken fixture, or water actively leaking?\",\"rule\":\"Street, hydrant, water main, dirty tap water→Water Maintenance (DEP). Inside: no heat/hot water→HEAT/HOT WATER; broken sink/toilet/no water supply→PLUMBING; water coming through ceiling/walls→WATER LEAK (all HPD).\"}]}"
+        },
+        {
+          "role": "agent",
+          "text": "I'll file a water leak complaint at 160 Bleecker Street, Manhattan. Is that right?"
+        },
+        {
+          "role": "caller",
+          "text": "Yes, that's right."
+        },
+        {
+          "role": "tool",
+          "text": "create_service_request {\"descriptor\":\"HEAVY FLOW\",\"confirmed_by_caller\":true,\"complaint_type\":\"WATER LEAK\",\"borough\":\"MANHATTAN\",\"location\":\"160 Bleecker street\"} -> {\"request_id\":\"311-57949\",\"agency\":\"HPD\",\"status\":\"Open\",\"complaint_type\":\"WATER LEAK\",\"descriptor\":\"HEAVY FLOW\"}"
+        }
+      ],
+      "seconds_to_ticket": 25.977,
+      "note": null,
+      "seconds": 26
     }
   ]
 }
