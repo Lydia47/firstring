@@ -1,0 +1,5 @@
+FirstRing on http://localhost:8081  (model gemini-3.1-flash-live-preview)
+[4f515858 0.4s] setup complete, opening
+[4f515858 4.8s] turn complete
+[4f515858 14.6s] tool find_complaint_type {"query":"loud music from upstairs neighbor"}
+[4f515858 14.6s]  -> {"candidates":[{"complaint_type":"Noise - Residential","definition":"Loud music, parties, television, or talking originating inside residential apartments or private homes.","agency":"NYPD","descriptors":["Loud Music/Party","Banging/Pounding","Loud Talking","Loud Television"]},{"complaint_type":"Noi

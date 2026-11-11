@@ -1,0 +1,16 @@
+{
+  "set": "dev",
+  "model": "gemini-3.1-flash-live-preview",
+  "started_at": "2026-11-11T11:11:25.444Z",
+  "finished_at": null,
+  "counts": {
+    "filed_correct": 0,
+    "filed_wrong": 0,
+    "asked_clarification": 0,
+    "handed_off": 0,
+    "network_error": 0,
+    "total": 0
+  },
+  "agency_correct": 0,
+  "calls": []
+}
