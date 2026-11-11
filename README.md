@@ -10,7 +10,7 @@ flowchart LR
     D --> E["🎫 Ticket filed<br/>agency from the city's type table"]
 ```
 
-FirstRing is a voice agent for New York City's 311 line. It answers immediately, works out which of the city's official complaint types the caller means, asks only for what is missing, reads the request back, and files a ticket whose agency comes from the city's own type table, not from the model.
+New York's 311 took **16.6 million calls** last year and still missed its own answer-time target (43 s average wait vs. a 30 s goal). FirstRing is a voice agent for that line. It answers immediately, works out which of the city's official complaint types the caller means, asks only for what is missing, reads the request back, and files a ticket whose agency comes from the city's own type table, not from the model.
 
 Demo video (74 s): https://youtu.be/BRY_yJmX15A
 
@@ -26,9 +26,12 @@ Built during the c0mpiled-18 hackathon (Taipei, 2026-11-11).
 
 - **🎯 No made-up categories.** `complaint_type` is an enum of 117 official NYC types; the model cannot write free text.
 - **🏛️ The server routes, not the model.** The agency is looked up from the official type table.
-- **🔁 No ticket without a read-back.** The server rejects a request until the caller has confirmed it.
+- **🔁 No ticket without a read-back.** The server rejects a request until the caller has confirmed it. In one of our demo calls the model tried to file early; the server said no, the model read back, the caller said yes, then it filed.
 - **🚨 Emergencies go to 911.** Emergency keywords are caught server-side and answered with "hang up and call 911".
 - **🔌 Three ways in, one set of rules.** Phone calls, a resident's AI assistant on the phone, and AI agents over REST/MCP all go through the same tool handlers.
+- **📞 Judges can call it.** Dial in from your own phone with a free SIP app and watch your ticket appear ([how](#call-it-yourself-judges-try-it-from-your-phone)).
+
+> **The model is replaceable. The city's rules are not.** The voice model is one setting (`LIVE_MODEL`); the official type list, the confirmation rule, agency routing and the emergency screen all live in the server, so every channel and every model is held to the same rules.
 
 **Contents:** [Call it yourself](#call-it-yourself-judges-try-it-from-your-phone) · [What happens on one call](#what-happens-on-one-call) · [How it avoids misclassifying](#how-it-avoids-misclassifying) · [Architecture](#architecture) · [The problem](#the-problem) · [Business model](#business-model) · [Going live tomorrow](#going-live-tomorrow) · [Run it locally](#run-it-locally)
 
