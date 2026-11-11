@@ -8,8 +8,8 @@
     "filed_wrong": 0,
     "asked_clarification": 4,
     "handed_off": 0,
-    "network_error": 5,
-    "total": 12
+    "network_error": 6,
+    "total": 13
   },
   "agency_correct": 3,
   "calls": [
@@ -428,6 +428,32 @@
       "seconds_to_ticket": 25.977,
       "note": null,
       "seconds": 26
+    },
+    {
+      "id": "nyc-22",
+      "expected": {
+        "complaint_type": "Traffic Signal Condition",
+        "descriptor": "Controller",
+        "agency": "DOT"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
     }
   ]
 }

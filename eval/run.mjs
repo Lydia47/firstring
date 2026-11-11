@@ -128,6 +128,12 @@ function runCall(item, source) {
       agentTextSinceCaller = '';
       actedSinceCaller = false;
       pendingDecision = false;
+      // 1 s of line silence before speech: without it the Live API's voice detection sometimes never fires
+      for (let i = 0; i < 10 && !streamAbort; i++) {
+        if (ws.readyState !== WebSocket.OPEN) return;
+        ws.send(Buffer.alloc(CHUNK));
+        await sleep(100);
+      }
       for (let i = 0; i < pcm.length && !streamAbort; i += CHUNK) {
         if (ws.readyState !== WebSocket.OPEN) return;
         ws.send(pcm.subarray(i, i + CHUNK));
