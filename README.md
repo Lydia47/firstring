@@ -14,6 +14,14 @@ FirstRing is a voice agent for New York City's 311 line. It answers immediately,
 
 Demo video (74 s): https://youtu.be/BRY_yJmX15A
 
+![Call screen: live transcript on the left, the filed ticket (Noise - Residential, NYPD) on the right, agent tool calls below](docs/call-screen.png)
+
+| Spanish call, English ticket (HEAT/HOT WATER → HPD) | City ops view: every ticket, by agency and channel |
+|---|---|
+| ![Spanish call](docs/call-spanish.png) | ![Ops view](docs/ops-view.png) |
+
+*Screenshots from recorded demo calls with synthetic callers.*
+
 Built during the c0mpiled-18 hackathon (Taipei, 2026-11-11).
 
 - **🎯 No made-up categories.** `complaint_type` is an enum of 117 official NYC types; the model cannot write free text.
@@ -273,3 +281,7 @@ Pre-event prepared **public data** (no product code was written before the event
 - `data/audio/*.wav` — synthetic caller lines for the demo calls (TTS)
 
 All calls shown in the demo video are **synthetic calls**.
+
+## License
+
+MIT, see [LICENSE](LICENSE).
