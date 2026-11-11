@@ -1,8 +1,5 @@
 .env*
 node_modules/
 data/tickets.jsonl
-eval/results*.json.tmp
 .DS_Store
 data/emergencies.jsonl
-eval/server.log
-eval/results*.json

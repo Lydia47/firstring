@@ -89,10 +89,6 @@ FIRSTRING_API_TOKEN=... node scripts/agent-demo.mjs          # MCP client acting
 FIRSTRING_API_TOKEN=... node scripts/agent-demo.mjs --rest   # same flow over REST
 ```
 
-## Eval
-
-`eval/run.mjs` is an automated eval harness: it replays 50 synthetic calls (TTS audio, labeled with real NYC complaint types) through the real agent end to end and buckets each outcome (filed correct / filed wrong / asked to clarify / handed off / no response). Tonight the injected TTS audio was not reliably detected as speech by the Live API, so **we do not report an accuracy number yet**. Method and how to run it: `eval/README.md`.
-
 ## The problem
 
 - NYC 311 took **16.6 million calls** in FY2026; the average wait was **43 seconds** against a 30-second target, and 75% were answered within 30 seconds against an 80% target. ([Mayor's Management Report FY2026, 311 chapter](https://www.nyc.gov/assets/operations/downloads/pdf/mmr2026/311.pdf))
@@ -163,7 +159,6 @@ npm start                            # http://localhost:8080
 - `http://localhost:8080/` — call screen, talk through your mic
 - `http://localhost:8080/?caller=nyc-noise` — synthetic caller (also `es-heat`, `agent`, `human`)
 - `http://localhost:8080/ops` — city ops view
-- `node eval/run.mjs --set dev` — run the eval harness (starts its own server on port 8081)
 
 ## Data
 
@@ -171,7 +166,6 @@ Pre-event prepared **public data** (no product code was written before the event
 
 - `data/nyc_taxonomy.json` — 117 official complaint types with agency, top descriptors and a one-line definition, from NYC Open Data dataset `erm2-nwe9`
 - `data/nyc_confusables.json` — 10 groups of easily confused types with a clarifying question each
-- `data/eval_dev30.json`, `data/eval_test20.json`, `data/eval_audio_nyc/` — 50 **synthetic** caller utterances (generated text, macOS TTS voices) labeled with real complaint types
 - `data/audio/*.wav` — synthetic caller lines for the demo calls (TTS)
 
-All calls shown in the demo and used in the eval are **synthetic calls**.
+All calls shown in the demo video are **synthetic calls**.

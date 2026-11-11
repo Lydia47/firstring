@@ -24,7 +24,7 @@ apiRouter.post('/requests', (req, res) => {
     logEmergency({ channel: 'api', keyword: hit, where: 'POST /api/v1/requests' });
     return res.status(422).json({ error: EMERGENCY_MESSAGE, emergency: true });
   }
-  const out = createServiceRequest(body, { channel: 'api', source: body.source === 'eval' ? 'eval' : 'demo' });
+  const out = createServiceRequest(body, { channel: 'api', source: 'demo' });
   res.status(out.error ? 422 : 201).json(out);
 });
 
