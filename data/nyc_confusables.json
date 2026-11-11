@@ -1,0 +1,103 @@
+[
+ {
+  "group": "noise",
+  "types": [
+   "Noise - Residential",
+   "Noise - Street/Sidewalk",
+   "Noise - Commercial",
+   "Noise - Park",
+   "Noise - Vehicle",
+   "Noise"
+  ],
+  "ask": "Where is the noise coming from: inside a home, a business, the street or sidewalk, a park, a vehicle, or construction or equipment?",
+  "rule": "Home→Residential; business/bar→Commercial; street/sidewalk crowd→Street/Sidewalk; park→Park; car/truck→Vehicle; construction, alarms, equipment, barking dog→Noise (DEP)."
+ },
+ {
+  "group": "vehicle",
+  "types": [
+   "Abandoned Vehicle",
+   "Derelict Vehicles"
+  ],
+  "ask": "Does the car still have license plates on it?",
+  "rule": "Plates on→Abandoned Vehicle (NYPD); no plates or stripped/junked→Derelict Vehicles (DSNY)."
+ },
+ {
+  "group": "parking",
+  "types": [
+   "Illegal Parking",
+   "Blocked Driveway"
+  ],
+  "ask": "Is the car blocking a driveway, or parked illegally somewhere else, like at a hydrant, crosswalk or against the signs?",
+  "rule": "Driveway→Blocked Driveway; everything else→Illegal Parking."
+ },
+ {
+  "group": "water-in-building",
+  "types": [
+   "HEAT/HOT WATER",
+   "PLUMBING",
+   "WATER LEAK",
+   "Water Maintenance"
+  ],
+  "ask": "Is this inside your apartment or building, or out on the street? And is it no heat or hot water, a broken fixture, or water actively leaking?",
+  "rule": "Street, hydrant, water main, dirty tap water→Water Maintenance (DEP). Inside: no heat/hot water→HEAT/HOT WATER; broken sink/toilet/no water supply→PLUMBING; water coming through ceiling/walls→WATER LEAK (all HPD)."
+ },
+ {
+  "group": "pests",
+  "types": [
+   "UNSANITARY CONDITION",
+   "Rodent"
+  ],
+  "ask": "Are the pests inside your apartment, or outside or in a common area?",
+  "rule": "Inside a rental apartment→UNSANITARY CONDITION (HPD); outdoors, public space, common areas→Rodent (DOHMH)."
+ },
+ {
+  "group": "trash",
+  "types": [
+   "Dirty Condition",
+   "Illegal Dumping",
+   "Missed Collection"
+  ],
+  "ask": "Was it set out for pickup and missed, did someone dump large items, or is it general litter?",
+  "rule": "Set out and not collected→Missed Collection; bulk items/debris dumped→Illegal Dumping; litter, overflowing bags→Dirty Condition."
+ },
+ {
+  "group": "construction",
+  "types": [
+   "General Construction/Plumbing",
+   "Real Time Enforcement",
+   "Building/Use",
+   "Noise"
+  ],
+  "ask": "Is the problem the noise, or the work itself, like no permit or something unsafe? Do people live in the building?",
+  "rule": "Noise only→Noise (DEP); work happening now without permit in an occupied multi-family building→Real Time Enforcement; illegal conversion/use→Building/Use; other unsafe or unpermitted work→General Construction/Plumbing (DOB)."
+ },
+ {
+  "group": "homeless",
+  "types": [
+   "Encampment",
+   "Homeless Person Assistance"
+  ],
+  "ask": "Is it a set-up camp, like tents or belongings, or a person who needs help?",
+  "rule": "Camp/structures→Encampment; person needing outreach→Homeless Person Assistance (DHS). Emergency→911."
+ },
+ {
+  "group": "trees",
+  "types": [
+   "Damaged Tree",
+   "Dead/Dying Tree",
+   "Overgrown Tree/Branches",
+   "Root/Sewer/Sidewalk Condition"
+  ],
+  "ask": "Is the tree broken or fallen, dead, growing into something, or are its roots lifting the sidewalk?",
+  "rule": "Broken/fallen→Damaged Tree; dead→Dead/Dying Tree; hitting building/wires→Overgrown Tree/Branches; roots lifting pavement→Root/Sewer/Sidewalk Condition."
+ },
+ {
+  "group": "road",
+  "types": [
+   "Street Condition",
+   "Sidewalk Condition"
+  ],
+  "ask": "Is it on the road where cars drive, or on the sidewalk?",
+  "rule": "Road→Street Condition; sidewalk/curb→Sidewalk Condition (both DOT)."
+ }
+]

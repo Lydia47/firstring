@@ -1,0 +1,16 @@
+{
+  "name": "firstring",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "FirstRing: a NYC 311 voice agent that turns every call into a complete, correctly routed service request.",
+  "scripts": {
+    "start": "node src/server.mjs",
+    "eval": "node eval/run.mjs"
+  },
+  "dependencies": {
+    "@google/genai": "3.1.0",
+    "express": "^4.21.2",
+    "ws": "8.22.2"
+  }
+}

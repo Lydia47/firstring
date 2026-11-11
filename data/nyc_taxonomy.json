@@ -1,0 +1,1759 @@
+[
+ {
+  "complaint_type": "Illegal Parking",
+  "count_6mo": 343352,
+  "agency": "NYPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Blocked Hydrant",
+   "Posted Parking Sign Violation",
+   "Blocked Sidewalk",
+   "Commercial Overnight Parking",
+   "Blocked Crosswalk",
+   "Double Parked Blocking Traffic"
+  ],
+  "definition": "Parking violations on public streets like blocked hydrants, crosswalks, or posted sign violations, enforced by NYPD.",
+  "count_60d": 111304
+ },
+ {
+  "complaint_type": "Noise - Residential",
+  "count_6mo": 208262,
+  "agency": "NYPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Loud Music/Party",
+   "Banging/Pounding",
+   "Loud Talking",
+   "Loud Television"
+  ],
+  "definition": "Loud music, parties, television, or talking originating inside residential apartments or private homes.",
+  "count_60d": 65554
+ },
+ {
+  "complaint_type": "HEAT/HOT WATER",
+  "count_6mo": 60876,
+  "agency": "HPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "ENTIRE BUILDING",
+   "APARTMENT ONLY"
+  ],
+  "definition": "Inadequate heat or hot water supply in residential rental apartments or entire residential buildings.",
+  "count_60d": 35727
+ },
+ {
+  "complaint_type": "Blocked Driveway",
+  "count_6mo": 101134,
+  "agency": "NYPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "No Access",
+   "Partial Access"
+  ],
+  "definition": "Vehicles blocking partial or full access to a private driveway on public streets.",
+  "count_60d": 33130
+ },
+ {
+  "complaint_type": "Noise - Street/Sidewalk",
+  "count_6mo": 132299,
+  "agency": "NYPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Loud Music/Party",
+   "Loud Talking"
+  ],
+  "definition": "Loud music, parties, or loud talking occurring directly on public streets or sidewalks.",
+  "count_60d": 31616
+ },
+ {
+  "complaint_type": "UNSANITARY CONDITION",
+  "count_6mo": 83034,
+  "agency": "HPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "PESTS",
+   "MOLD",
+   "GARBAGE/RECYCLING STORAGE",
+   "SEWAGE"
+  ],
+  "definition": "Mold, pests, garbage, or sewage issues inside residential rental apartments or residential buildings.",
+  "count_60d": 27186
+ },
+ {
+  "complaint_type": "Street Condition",
+  "count_6mo": 59503,
+  "agency": "DOT",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Pothole",
+   "Cave-in",
+   "Defective Hardware",
+   "Blocked - Construction",
+   "Rough, Pitted or Cracked Roads",
+   "Failed Street Repair"
+  ],
+  "definition": "Roadway surface defects like potholes, cave-ins, or cracked pavement on public streets.",
+  "count_60d": 14213
+ },
+ {
+  "complaint_type": "PLUMBING",
+  "count_6mo": 43124,
+  "agency": "HPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "WATER SUPPLY",
+   "BASIN/SINK",
+   "BATHTUB/SHOWER",
+   "TOILET",
+   "RADIATOR",
+   "STEAM PIPE/RISER"
+  ],
+  "definition": "Defective plumbing fixtures like sinks, toilets, tubs, or radiators inside residential rental properties.",
+  "count_60d": 13364
+ },
+ {
+  "complaint_type": "Noise",
+  "count_6mo": 34973,
+  "agency": "DEP",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Construction",
+   "Noise: Construction Before/After Hours (NM1)",
+   "Dog",
+   "Construction Equipment",
+   "Alarm",
+   "Noise: Alarms (NR3)"
+  ],
+  "definition": "Ambient environmental noise from construction, equipment, alarms, or barking dogs regulated by DEP.",
+  "count_60d": 13222
+ },
+ {
+  "complaint_type": "PAINT/PLASTER",
+  "count_6mo": 37816,
+  "agency": "HPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "WALL",
+   "CEILING",
+   "WINDOW/FRAME",
+   "CABINET",
+   "DOOR/FRAME",
+   "RADIATOR"
+  ],
+  "definition": "Damaged, peeling, or cracked paint and plaster on interior walls, ceilings, or doors in rental units.",
+  "count_60d": 12575
+ },
+ {
+  "complaint_type": "Noise - Commercial",
+  "count_6mo": 36238,
+  "agency": "NYPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Loud Music/Party",
+   "Banging/Pounding",
+   "Loud Talking",
+   "Car/Truck Music",
+   "Car/Truck Horn",
+   "Loud Television"
+  ],
+  "definition": "Excessive music, shouting, or noise originating from commercial businesses, bars, or restaurants.",
+  "count_60d": 12424
+ },
+ {
+  "complaint_type": "Abandoned Vehicle",
+  "count_6mo": 42224,
+  "agency": "NYPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "With License Plate"
+  ],
+  "definition": "Unattended motor vehicles left on public streets that still have license plates attached.",
+  "count_60d": 12351
+ },
+ {
+  "complaint_type": "Dirty Condition",
+  "count_6mo": 41058,
+  "agency": "DSNY",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Trash",
+   "Dog Waste",
+   "Dirt or Gravel",
+   "Broken Glass",
+   "Syringes",
+   "Debris from Car Accident"
+  ],
+  "definition": "Litter, trash, dog waste, or broken glass on public streets and sidewalks requiring sanitation cleanup.",
+  "count_60d": 12026
+ },
+ {
+  "complaint_type": "Noise - Vehicle",
+  "count_6mo": 33735,
+  "agency": "NYPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Car/Truck Music",
+   "Car/Truck Horn",
+   "Engine Idling"
+  ],
+  "definition": "Noise coming from a motor vehicle on the street: car or truck music, horns, or an engine left idling.",
+  "count_60d": 9927
+ },
+ {
+  "complaint_type": "DOOR/WINDOW",
+  "count_6mo": 28397,
+  "agency": "HPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "DOOR",
+   "WINDOW FRAME",
+   "DOOR FRAME",
+   "WINDOW PANE",
+   "DOOR TO DUMBWAITER"
+  ],
+  "definition": "Damaged, broken, or defective doors, window panes, or frames inside residential rental apartments.",
+  "count_60d": 9774
+ },
+ {
+  "complaint_type": "Water Maintenance",
+  "count_6mo": 23346,
+  "agency": "DEP",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Fire Hydrant Running",
+   "Dirty Water",
+   "Fire Hydrant Running Full",
+   "Leak",
+   "Fire Hydrant Leaking",
+   "Fire Hydrant Emergency"
+  ],
+  "definition": "Street water infrastructure: running or leaking fire hydrants, water main leaks, or dirty tap water (DEP). Replaced \"Water System\" in Aug 2026.",
+  "count_60d": 9753
+ },
+ {
+  "complaint_type": "Street Light Condition",
+  "count_6mo": 23731,
+  "agency": "DOT",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Street Light Out",
+   "Multiple Street Lights Out",
+   "Traffic Signal Light",
+   "Lamppost Wire Exposed",
+   "Lamppost Knocked Down",
+   "Street Light Dayburning"
+  ],
+  "definition": "Out, broken, or knocked-down street light fixtures, or exposed wiring on public lampposts.",
+  "count_60d": 9358
+ },
+ {
+  "complaint_type": "WATER LEAK",
+  "count_6mo": 27017,
+  "agency": "HPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "HEAVY FLOW",
+   "SLOW LEAK",
+   "DAMP SPOT"
+  ],
+  "definition": "Active water leaks, damp spots, or heavy water flows inside residential rental units.",
+  "count_60d": 9047
+ },
+ {
+  "complaint_type": "GENERAL",
+  "count_6mo": 26378,
+  "agency": "HPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "COOKING GAS",
+   "BELL/BUZZER/INTERCOM",
+   "CABINET",
+   "VENTILATION SYSTEM",
+   "SIGNAGE MISSING",
+   "JANITOR/SUPER"
+  ],
+  "definition": "Residential building interior maintenance issues like broken intercoms, cabinets, missing signage, or cooking gas.",
+  "count_60d": 8861
+ },
+ {
+  "complaint_type": "Encampment",
+  "count_6mo": 30591,
+  "agency": "NYPD",
+  "agency_share": 0.603,
+  "other_agencies": [
+   "DHS"
+  ],
+  "top_descriptors": [
+   "N/A"
+  ],
+  "definition": "Temporary shelters, tents, or living setups established by unhoused individuals on public property.",
+  "count_60d": 8728
+ },
+ {
+  "complaint_type": "Damaged Tree",
+  "count_6mo": 33768,
+  "agency": "DPR",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Branch or Limb Has Fallen Down",
+   "Branch Cracked and Will Fall",
+   "Entire Tree Has Fallen Down",
+   "Tree Leaning/Uprooted",
+   "Tree Alive - in Poor Condition",
+   "Tree Trunk Split"
+  ],
+  "definition": "Cracked, leaning, or fallen tree branches or entire trees on public street or park property.",
+  "count_60d": 7808
+ },
+ {
+  "complaint_type": "Homeless Person Assistance",
+  "count_6mo": 22611,
+  "agency": "DHS",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Non-Chronic",
+   "Chronic"
+  ],
+  "definition": "Requests for social service outreach teams to assist non-emergency individuals experiencing homelessness in public spaces.",
+  "count_60d": 7744
+ },
+ {
+  "complaint_type": "Traffic Signal Condition",
+  "count_6mo": 26605,
+  "agency": "DOT",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Controller",
+   "Pedestrian Signal",
+   "Veh Signal Lamp",
+   "APS",
+   "Vehicle Signal",
+   "Veh Signal Head"
+  ],
+  "definition": "Malfunctioning, broken, missing, or knocked-down vehicular or pedestrian traffic signals.",
+  "count_60d": 7358
+ },
+ {
+  "complaint_type": "Illegal Dumping",
+  "count_6mo": 23879,
+  "agency": "DSNY",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Removal Request",
+   "Chronic Dumping"
+  ],
+  "definition": "Large-scale unauthorized dumping of bulk trash, construction debris, or commercial waste on public or private land.",
+  "count_60d": 7328
+ },
+ {
+  "complaint_type": "General Construction/Plumbing",
+  "count_6mo": 24241,
+  "agency": "DOB",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Building Permit - None",
+   "Sidewalk Shed/Pipe Scafford - Inadequate Defective/None",
+   "Building Shaking/Vibrating/Structural Stability",
+   "Fence - None/Inadequate",
+   "Cons - Contrary/Beyond Approved Plans/Permits",
+   "Curb Cut/Driveway/Carport - Illegal"
+  ],
+  "definition": "Unsafe, unpermitted, or non-compliant active building construction, structural instability, or defective scaffolding.",
+  "count_60d": 7325
+ },
+ {
+  "complaint_type": "ELECTRIC",
+  "count_6mo": 19434,
+  "agency": "HPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "OUTLET/SWITCH",
+   "POWER OUTAGE",
+   "NO LIGHTING",
+   "LIGHTING",
+   "WIRING"
+  ],
+  "definition": "Faulty power outlets, switches, light fixtures, or wiring issues inside residential rental properties.",
+  "count_60d": 6322
+ },
+ {
+  "complaint_type": "Missed Collection",
+  "count_6mo": 20994,
+  "agency": "DSNY",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Trash",
+   "Compost",
+   "Bulky Trash",
+   "Recycling - Paper/Metal/Glass/Rigid Plastic",
+   "Bulky Recycling",
+   "Recycling - Paper"
+  ],
+  "definition": "Uncollected curbside trash, recycling, or compost set out properly by residents for scheduled sanitation collection.",
+  "count_60d": 6122
+ },
+ {
+  "complaint_type": "Derelict Vehicles",
+  "count_6mo": 19704,
+  "agency": "DSNY",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Derelict Vehicles"
+  ],
+  "definition": "Abandoned, damaged, or junked motor vehicles left on public property without license plates attached.",
+  "count_60d": 5686
+ },
+ {
+  "complaint_type": "FLOORING/STAIRS",
+  "count_6mo": 16759,
+  "agency": "HPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "FLOOR",
+   "STAIRS"
+  ],
+  "definition": "Damaged, hazardous, or defective interior flooring or stairs inside residential rental units or buildings.",
+  "count_60d": 5513
+ },
+ {
+  "complaint_type": "Rodent",
+  "count_6mo": 17611,
+  "agency": "DOHMH",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Rat Sighting",
+   "Condition Attracting Rodents",
+   "Signs of Rodents",
+   "Mouse Sighting"
+  ],
+  "definition": "Rats or mice seen outdoors, in public spaces, or building common areas, or conditions attracting rodents. Pests inside a rental apartment go to UNSANITARY CONDITION (HPD).",
+  "count_60d": 5132
+ },
+ {
+  "complaint_type": "APPLIANCE",
+  "count_6mo": 14971,
+  "agency": "HPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "ELECTRIC/GAS RANGE",
+   "REFRIGERATOR",
+   "MICROWAVE"
+  ],
+  "definition": "Defective landlord-provided appliances like refrigerators, stoves, or microwaves inside residential rental units.",
+  "count_60d": 5031
+ },
+ {
+  "complaint_type": "Sidewalk Condition",
+  "count_6mo": 15830,
+  "agency": "DOT",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Broken Sidewalk",
+   "Sidewalk Violation",
+   "Blocked - Construction",
+   "Sidewalk Collapsed",
+   "Pedestrian Ramp Defective",
+   "Defective Hardware"
+  ],
+  "definition": "Damaged, cracked, collapsed, or uneven public pedestrian sidewalks and defective curb ramps.",
+  "count_60d": 4982
+ },
+ {
+  "complaint_type": "Maintenance or Facility",
+  "count_6mo": 20614,
+  "agency": "DPR",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Structure - Outdoors",
+   "Garbage or Litter",
+   "Rodent Sighting",
+   "Grass/Weeds",
+   "Unsecured Facility",
+   "Hours of Operation"
+  ],
+  "definition": "Damaged structures, litter, weeds, or facility maintenance issues inside public parks or park buildings.",
+  "count_60d": 4944
+ },
+ {
+  "complaint_type": "Overgrown Tree/Branches",
+  "count_6mo": 19926,
+  "agency": "DPR",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Hitting Building",
+   "Blocking Street",
+   "Dead Branches in Tree",
+   "Hitting Power Lines",
+   "Hitting Phone/Cable Lines",
+   "Clear Street Light"
+  ],
+  "definition": "Live tree branches growing excessively and hitting utility lines, buildings, or obstructing public streets.",
+  "count_60d": 4930
+ },
+ {
+  "complaint_type": "Sewer Maintenance",
+  "count_6mo": 12728,
+  "agency": "DEP",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Catch Basin Clogged",
+   "Backup",
+   "Flooding on Street",
+   "Manhole Overflow",
+   "Catch Basin Sunken",
+   "Catch Basin Search"
+  ],
+  "definition": "Maintenance of city sewer lines, storm drain catch basins, street flooding, or overflowing manholes.",
+  "count_60d": 4912
+ },
+ {
+  "complaint_type": "Traffic",
+  "count_6mo": 7222,
+  "agency": "NYPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Truck Route Violation",
+   "Congestion/Gridlock",
+   "Drag Racing",
+   "Chronic Speeding",
+   "Chronic Stoplight Violation"
+  ],
+  "definition": "Moving vehicular traffic violations like drag racing, gridlock, speeding, or red-light running enforced by NYPD.",
+  "count_60d": 4334
+ },
+ {
+  "complaint_type": "Vendor Enforcement",
+  "count_6mo": 14906,
+  "agency": "DSNY",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Food Vendor",
+   "Non-Food Vendor"
+  ],
+  "definition": "Unlicensed or non-compliant street vendors selling food or non-food merchandise on public sidewalks.",
+  "count_60d": 4261
+ },
+ {
+  "complaint_type": "Non-Emergency Police Matter",
+  "count_6mo": 13351,
+  "agency": "NYPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Other (complaint details)",
+   "Trespassing",
+   "Street Con Game",
+   "Ticket Scalping"
+  ],
+  "definition": "Minor non-emergency police issues like trespassing, scalping, or street con games requiring NYPD response.",
+  "count_60d": 4031
+ },
+ {
+  "complaint_type": "Obstruction",
+  "count_6mo": 14040,
+  "agency": "DSNY",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Cone",
+   "Weeds or Grass",
+   "Trash or Recycling",
+   "Merchandise",
+   "Sign",
+   "Sidewalk Display"
+  ],
+  "definition": "Objects like cones, merchandise, or overgrown weeds illegally blocking public sidewalks or streets.",
+  "count_60d": 3932
+ },
+ {
+  "complaint_type": "Consumer Complaint",
+  "count_6mo": 12716,
+  "agency": "DCWP",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Tow Truck Company",
+   "Restaurant",
+   "Other Store (Non-Food)",
+   "Bodega, Deli, or Convenience Store",
+   "Supermarket or Grocery Store",
+   "Stoop Line Stand"
+  ],
+  "definition": "Unfair business practices, overcharging, or service disputes involving licensed retail businesses, bodegas, or tow trucks.",
+  "count_60d": 3908
+ },
+ {
+  "complaint_type": "Building/Use",
+  "count_6mo": 14960,
+  "agency": "DOB",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Illegal Conversion Of Residential Building/Space",
+   "No Certificate Of Occupancy/Illegal/Contrary To CO",
+   "Zoning - Non-Conforming/Illegal Vehicle Storage",
+   "Illegal. Commercial Use In Resident Zone",
+   "SRO - Illegal Work/No Permit/Change In Occupancy/Use"
+  ],
+  "definition": "Illegal space conversions, zoning non-compliance, unauthorized commercial operations in residential zones, or Certificate of Occupancy violations.",
+  "count_60d": 3573
+ },
+ {
+  "complaint_type": "For Hire Vehicle Complaint",
+  "count_6mo": 10594,
+  "agency": "TLC",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Driver Complaint - Non Passenger",
+   "Driver Complaint - Passenger",
+   "Car Service Company Complaint",
+   "Driver Report - Non Passenger",
+   "Equipment Complaint"
+  ],
+  "definition": "Driver behavior, overcharging, or vehicle issues involving TLC-licensed for-hire vehicles, liveries, or car services.",
+  "count_60d": 3325
+ },
+ {
+  "complaint_type": "Elevator",
+  "count_6mo": 14081,
+  "agency": "DOB",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Elevator - Single Device On Property/No Alternate Service",
+   "Elevator - Multiple Devices On Property"
+  ],
+  "definition": "Malfunctioning, dangerous, or out-of-service passenger or freight elevators in residential or commercial buildings.",
+  "count_60d": 3228
+ },
+ {
+  "complaint_type": "Lead",
+  "count_6mo": 8480,
+  "agency": "DEP",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Lead Kit",
+   "Lead Kit Request (Residential) (L10)"
+  ],
+  "definition": "Requests for DEP residential drinking water lead testing kits or lead kit inquiries.",
+  "count_60d": 2769
+ },
+ {
+  "complaint_type": "SAFETY",
+  "count_6mo": 8208,
+  "agency": "HPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "SMOKE DETECTOR",
+   "FIRE ESCAPE",
+   "CARBON MONOXIDE DETECTOR",
+   "WINDOW GUARD BROKEN/MISSING",
+   "SPRINKLER",
+   "OUTLET COVER"
+  ],
+  "definition": "Missing or defective residential safety devices including smoke detectors, carbon monoxide detectors, window guards, or fire escapes.",
+  "count_60d": 2689
+ },
+ {
+  "complaint_type": "Graffiti",
+  "count_6mo": 9732,
+  "agency": "DSNY",
+  "agency_share": 0.95,
+  "other_agencies": [
+   "NYPD"
+  ],
+  "top_descriptors": [
+   "Graffiti",
+   "Police Report Not Requested",
+   "Police Report Requested"
+  ],
+  "definition": "Unapproved spray paint, tags, or markings on public or private building surfaces or structures.",
+  "count_60d": 2642
+ },
+ {
+  "complaint_type": "Food Establishment",
+  "count_6mo": 8703,
+  "agency": "DOHMH",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Rodents/Insects/Garbage",
+   "Pet/Animal",
+   "Food Spoiled",
+   "Letter Grading",
+   "Food Contaminated",
+   "Bare Hands in Contact w/ Food"
+  ],
+  "definition": "Unsanitary conditions, rodents, spoiled food, or health code violations inside commercial restaurants, supermarkets, or food markets.",
+  "count_60d": 2590
+ },
+ {
+  "complaint_type": "Panhandling",
+  "count_6mo": 7285,
+  "agency": "NYPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "N/A"
+  ],
+  "definition": "Individuals actively soliciting money or begging in public spaces.",
+  "count_60d": 2474
+ },
+ {
+  "complaint_type": "Residential Disposal Complaint",
+  "count_6mo": 8050,
+  "agency": "DSNY",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Trash or Recycling Not Secure",
+   "Bin Not Used",
+   "Waste Not Separated",
+   "Waste Set Out Too Early or Too Late",
+   "Waste Left in Front of Other Residence",
+   "Storage Area Not Provided"
+  ],
+  "definition": "Residential waste placement violations, such as unsecured trash bins or setting waste out at unpermitted times.",
+  "count_60d": 2412
+ },
+ {
+  "complaint_type": "Dead Animal",
+  "count_6mo": 7292,
+  "agency": "DSNY",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Cat",
+   "Rat or Mouse",
+   "Raccoon",
+   "Bird",
+   "Other",
+   "Squirrel"
+  ],
+  "definition": "Animal carcasses needing removal from public streets, sidewalks, or public property.",
+  "count_60d": 2330
+ },
+ {
+  "complaint_type": "Animal-Abuse",
+  "count_6mo": 6639,
+  "agency": "NYPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Neglected",
+   "Other (complaint details)",
+   "Tortured",
+   "No Shelter",
+   "Chained",
+   "In Car"
+  ],
+  "definition": "Reports of animal cruelty, severe neglect, torture, improper shelter, or chained pets.",
+  "count_60d": 2294
+ },
+ {
+  "complaint_type": "Air Quality",
+  "count_6mo": 6161,
+  "agency": "DEP",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Vehicle Idling Odor",
+   "Air: Odor/Fumes, Vehicle Idling (AD3)",
+   "Dust from Construction",
+   "Asbestos Disturbance",
+   "Air: Dust, Construction/Demolition (AE4)",
+   "Restaurant Odor"
+  ],
+  "definition": "Environmental air pollution, construction dust, asbestos disturbances, or idling vehicle exhaust outdoors.",
+  "count_60d": 1994
+ },
+ {
+  "complaint_type": "Dead/Dying Tree",
+  "count_6mo": 8821,
+  "agency": "DPR",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Planted More Than 2 Years Ago",
+   "Planted Less Than 2 Years Ago"
+  ],
+  "definition": "Dead, diseased, or dying public street or park trees requiring evaluation or removal.",
+  "count_60d": 1985
+ },
+ {
+  "complaint_type": "Root/Sewer/Sidewalk Condition",
+  "count_6mo": 6495,
+  "agency": "DPR",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Trees and Sidewalks Program",
+   "Affecting Sewer or Foundation"
+  ],
+  "definition": "Damage to public sidewalks, sewer lines, or building foundations caused by growing tree roots.",
+  "count_60d": 1978
+ },
+ {
+  "complaint_type": "Indoor Air Quality",
+  "count_6mo": 6250,
+  "agency": "DOHMH",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Chemical Vapors/Gases/Odors",
+   "Ventilation",
+   "Sewage Odor",
+   "Other (Explain Below)",
+   "Dust from Construction",
+   "Human Feces"
+  ],
+  "definition": "Indoor air hazards like chemical odors, vapors, construction dust, or ventilation issues in buildings.",
+  "count_60d": 1893
+ },
+ {
+  "complaint_type": "Street Sweeping Complaint",
+  "count_6mo": 5193,
+  "agency": "DSNY",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Inadequate Sweeping",
+   "Street Not Swept"
+  ],
+  "definition": "Reports of unperformed or inadequate street sweeping on public roadways, handled by DSNY.",
+  "count_60d": 1880
+ },
+ {
+  "complaint_type": "Taxi Complaint",
+  "count_6mo": 5636,
+  "agency": "TLC",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Driver Complaint - Passenger",
+   "Driver Complaint - Non Passenger",
+   "Vehicle Complaint"
+  ],
+  "definition": "Complaints concerning yellow or green metered taxicab drivers, overcharging, or taxicab vehicle conditions.",
+  "count_60d": 1766
+ },
+ {
+  "complaint_type": "Illegal Tree Damage",
+  "count_6mo": 5236,
+  "agency": "DPR",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Trunk Damaged",
+   "Branches Damaged",
+   "Roots Damaged",
+   "Unauthorized Tree Removal",
+   "Bicycle Chained to Tree",
+   "Unauthorized Tree Pruning"
+  ],
+  "definition": "Damage to trunk, branches, roots, unauthorized tree removal, or bikes chained to street trees, managed by DPR.",
+  "count_60d": 1546
+ },
+ {
+  "complaint_type": "Noise - Park",
+  "count_6mo": 6351,
+  "agency": "NYPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Loud Music/Party",
+   "Loud Talking"
+  ],
+  "definition": "Excessive music, shouting, or loud parties originating within public parks or green spaces.",
+  "count_60d": 1506
+ },
+ {
+  "complaint_type": "Curb Condition",
+  "count_6mo": 5082,
+  "agency": "DOT",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Broken Curb",
+   "Defacement",
+   "Curb Defect-Metal Protruding",
+   "Curb Violation"
+  ],
+  "definition": "Physical defects, defacement, or protruding metal on street curbs, managed by DOT (unlike sidewalk or lot complaints).",
+  "count_60d": 1408
+ },
+ {
+  "complaint_type": "Drug Activity",
+  "count_6mo": 5084,
+  "agency": "NYPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Use Outside",
+   "Use Indoor"
+  ],
+  "definition": "Illegal drug use or sales occurring outdoors or indoors, routed to NYPD for criminal enforcement.",
+  "count_60d": 1309
+ },
+ {
+  "complaint_type": "Smoking or Vaping",
+  "count_6mo": 3920,
+  "agency": "DOHMH",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Allowed in Smoke Free Area",
+   "Sign Inadequate",
+   "Ashtray in Smoke-Free Area",
+   "Workplace Policy Not Provided or Inadequate"
+  ],
+  "definition": "Illegal smoking, vaping, missing signs, or ashtrays in indoor smoke-free commercial or workplace areas, handled by DOHMH.",
+  "count_60d": 1233
+ },
+ {
+  "complaint_type": "Illegal Posting",
+  "count_6mo": 3220,
+  "agency": "DSNY",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Poster or Sign",
+   "Sticker or Decal",
+   "Flyer or Handbill"
+  ],
+  "definition": "Unauthorized posters, stickers, or flyers affixed to public street structures, handled by DSNY.",
+  "count_60d": 1122
+ },
+ {
+  "complaint_type": "Lost Property",
+  "count_6mo": 3677,
+  "agency": "TLC",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Bag/Wallet",
+   "Electronics/Phones",
+   "Other",
+   "Clothing/Glasses",
+   "Jewelry",
+   "Book/Stationery"
+  ],
+  "definition": "Personal items lost inside TLC-regulated taxis or for-hire vehicles, reported to TLC.",
+  "count_60d": 1118
+ },
+ {
+  "complaint_type": "Real Time Enforcement",
+  "count_6mo": 3741,
+  "agency": "DOB",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Work Without A Permit - Occupied Multiple Dwelling"
+  ],
+  "definition": "Active unpermitted construction work in progress inside an occupied multiple dwelling building, inspected by DOB.",
+  "count_60d": 1017
+ },
+ {
+  "complaint_type": "Noise - Helicopter",
+  "count_6mo": 3369,
+  "agency": "EDC",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Other",
+   "NYPD",
+   "News Gathering"
+  ],
+  "definition": "Excessive noise specifically from non-emergency, news, or tour helicopters, handled by EDC.",
+  "count_60d": 962
+ },
+ {
+  "complaint_type": "Street Sign - Damaged",
+  "count_6mo": 2860,
+  "agency": "DOT",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Other/Unknown",
+   "No Parking, Standing, Stopping",
+   "Stop",
+   "Bus Stop",
+   "St Name - Attached to Pole",
+   "Street Cleaning - ASP"
+  ],
+  "definition": "Existing street, parking, or stop signs that are physically damaged or bent, managed by DOT (not missing/dangling).",
+  "count_60d": 915
+ },
+ {
+  "complaint_type": "Drinking",
+  "count_6mo": 3340,
+  "agency": "NYPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "In Public",
+   "Underage - Licensed Est",
+   "After Hours - Licensed Est"
+  ],
+  "definition": "Public alcohol consumption or illegal drinking at licensed establishments (underage/after-hours), routed to NYPD.",
+  "count_60d": 884
+ },
+ {
+  "complaint_type": "Animal in a Park",
+  "count_6mo": 3332,
+  "agency": "DPR",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Dog Off Leash",
+   "Injured Wildlife",
+   "Dead Animal",
+   "Wildlife Sighting",
+   "Removing Wildlife",
+   "Domestic Strays"
+  ],
+  "definition": "Off-leash dogs, wildlife sightings, or dead/injured animals located specifically within public parks, handled by DPR.",
+  "count_60d": 874
+ },
+ {
+  "complaint_type": "Cannabis Retailer",
+  "count_6mo": 2627,
+  "agency": "OOS",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Sales to Minors Under 21",
+   "Unlicensed",
+   "Suspicious Activity",
+   "Too Close to a School",
+   "Product Concerns",
+   "Too Close to a House of Worship"
+  ],
+  "definition": "Unlicensed cannabis sales, sales to minors, or non-compliant storefront locations, handled by OOS.",
+  "count_60d": 854
+ },
+ {
+  "complaint_type": "Litter Basket Request",
+  "count_6mo": 2699,
+  "agency": "DSNY",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Replacement Basket",
+   "New Basket"
+  ],
+  "definition": "Requests to install a new public street litter basket or replace an existing one, handled by DSNY.",
+  "count_60d": 802
+ },
+ {
+  "complaint_type": "Emergency Response Team (ERT)",
+  "count_6mo": 2106,
+  "agency": "DOB",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "After Hours Work - Illegal",
+   "Lights From Parking Lot Shining On Building"
+  ],
+  "definition": "Unpermitted after-hours construction work or intrusive parking lot lighting shining on buildings, inspected by DOB.",
+  "count_60d": 794
+ },
+ {
+  "complaint_type": "Highway Condition",
+  "count_6mo": 2529,
+  "agency": "DOT",
+  "agency_share": 0.83,
+  "other_agencies": [
+   "DSNY"
+  ],
+  "top_descriptors": [
+   "Pothole - Highway",
+   "Litter",
+   "Graffiti - Highway",
+   "Dead Animal",
+   "Cave-in",
+   "Painted Line/Marking"
+  ],
+  "definition": "Potholes, litter, cave-ins, or dead animals located specifically on highways, managed by DOT.",
+  "count_60d": 790
+ },
+ {
+  "complaint_type": "Special Projects Inspection Team (SPIT)",
+  "count_6mo": 2166,
+  "agency": "DOB",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Illegal Hotel Rooms In Residential Building",
+   "Sign/Awning/Marquee - Illegal/No Permit",
+   "Privately Owned Public Space/Non-Compliance",
+   "Advertising Sign/Billboard/Posters/Flexible Fabric - Illegal",
+   "Adult Establishment",
+   "Sign - In Danger Of Falling"
+  ],
+  "definition": "Illegal residential hotel rooms, unpermitted commercial signs, or non-compliant privately owned public spaces, inspected by DOB.",
+  "count_60d": 725
+ },
+ {
+  "complaint_type": "Violation of Park Rules",
+  "count_6mo": 3827,
+  "agency": "DPR",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Unlicensed Vendors",
+   "Obstructing Public Use",
+   "BBQ Outside Authorized Area",
+   "Unsafe Use of Playground",
+   "Smoking",
+   "Biking/Rollerblading off Path"
+  ],
+  "definition": "Unlicensed vendors, unauthorized BBQs, or unsafe activities occurring within park grounds, handled by DPR (unlike public streets).",
+  "count_60d": 704
+ },
+ {
+  "complaint_type": "Street Sign - Dangling",
+  "count_6mo": 1845,
+  "agency": "DOT",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Other/Unknown",
+   "No Parking, Standing, Stopping",
+   "Stop",
+   "St Name - Attached to Pole",
+   "Street Cleaning - ASP",
+   "One Way"
+  ],
+  "definition": "Street or parking signs hanging loosely or precariously from poles, managed by DOT.",
+  "count_60d": 675
+ },
+ {
+  "complaint_type": "Street Sign - Missing",
+  "count_6mo": 1894,
+  "agency": "DOT",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "No Parking, Standing, Stopping",
+   "Other/Unknown",
+   "Stop",
+   "Street Cleaning - ASP",
+   "St Name - Attached to Pole",
+   "Bus Stop"
+  ],
+  "definition": "Street, parking, or stop signs that are completely missing from poles, managed by DOT.",
+  "count_60d": 640
+ },
+ {
+  "complaint_type": "Plumbing",
+  "count_6mo": 2248,
+  "agency": "DOB",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Failure To Retain Water/Improper Drainage- (LL103/89)",
+   "Plumbing Work - Illegal/No Permit/Standpipe/Sprinkler",
+   "Plumbing-Defective/Leaking/Not Maintained",
+   "Gas Hook-Up/Piping - Illegal Or Defective",
+   "Sprinkler System - Inadequate"
+  ],
+  "definition": "Defective, unpermitted, or leaking building plumbing, gas piping, or sprinkler systems, inspected by DOB.",
+  "count_60d": 612
+ },
+ {
+  "complaint_type": "Illegal Fireworks",
+  "count_6mo": 10491,
+  "agency": "NYPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "N/A"
+  ],
+  "definition": "Possession, sale, or active detonation of illegal pyrotechnics or fireworks.",
+  "count_60d": 601
+ },
+ {
+  "complaint_type": "Boilers",
+  "count_6mo": 1382,
+  "agency": "DOB",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Boiler - Defective/Inoperative/No Permit"
+  ],
+  "definition": "Defective, unpermitted, or non-functioning building heating boilers, inspected by DOB.",
+  "count_60d": 588
+ },
+ {
+  "complaint_type": "Food Poisoning",
+  "count_6mo": 1725,
+  "agency": "DOHMH",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "1 or 2",
+   "3 or More"
+  ],
+  "definition": "Suspected foodborne illness resulting from food consumed at commercial food establishments, handled by DOHMH.",
+  "count_60d": 559
+ },
+ {
+  "complaint_type": "Broken Parking Meter",
+  "count_6mo": 1705,
+  "agency": "DOT",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Out of Order",
+   "Coin or Card Did Not Register",
+   "No Receipt",
+   "Timer Defect - Fast/Fail",
+   "Bent/Loose",
+   "Credit Card Stuck in Meter"
+  ],
+  "definition": "Malfunctioning, damaged, fast-timer, or out-of-order street parking meters, managed by DOT.",
+  "count_60d": 546
+ },
+ {
+  "complaint_type": "Outdoor Dining",
+  "count_6mo": 2141,
+  "agency": "DOT",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Sidewalk Zone Blocked",
+   "Restaurant Status",
+   "Site Setup Condition",
+   "Street Zone Blocked",
+   "Barrier Condition"
+  ],
+  "definition": "Blocked sidewalks, improper setup, or barrier violations by restaurant outdoor dining structures, managed by DOT.",
+  "count_60d": 544
+ },
+ {
+  "complaint_type": "Sanitation Worker or Vehicle Complaint",
+  "count_6mo": 1751,
+  "agency": "DSNY",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Inappropriate Behavior",
+   "Spilled Garbage",
+   "Noise",
+   "Unsafe Driving",
+   "Idling or Blocking Traffic"
+  ],
+  "definition": "Misconduct, unsafe driving, noise, or spilled garbage involving DSNY workers or vehicles.",
+  "count_60d": 534
+ },
+ {
+  "complaint_type": "Water Conservation",
+  "count_6mo": 2817,
+  "agency": "DEP",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Illegal Use Of A Hydrant (CIN)",
+   "Fire Hydrant",
+   "Water Meter Broken/Leaking",
+   "Water Meter Broken/Leaking - Private Residence (CMR)",
+   "Water Waste",
+   "Water Meter Broken/Leaking - Other (CMO)"
+  ],
+  "definition": "Unauthorized fire hydrant use, leaking water meters, or general water waste, handled by DEP.",
+  "count_60d": 532
+ },
+ {
+  "complaint_type": "Mobile Food Vendor",
+  "count_6mo": 1661,
+  "agency": "DOHMH",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Food Source/Protection",
+   "Equipment",
+   "Food Worker Activity",
+   "Smoke/Odor",
+   "Insects / Pests",
+   "Food Temperature"
+  ],
+  "definition": "Health code, sanitation, pest, or equipment violations by mobile food carts or trucks, handled by DOHMH.",
+  "count_60d": 501
+ },
+ {
+  "complaint_type": "Hazardous Material",
+  "count_6mo": 963,
+  "agency": "DEP",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Chemical Odor",
+   "Chemical Spill",
+   "Oil Spill Large",
+   "Chemical Safety",
+   "Chemical Safety/Storage",
+   "Oil Spill Small"
+  ],
+  "definition": "Large-scale chemical spills, chemical safety hazards, or chemical odors, handled by DEP.",
+  "count_60d": 482
+ },
+ {
+  "complaint_type": "Unsanitary Animal Pvt Property",
+  "count_6mo": 1796,
+  "agency": "DOHMH",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Dog",
+   "Cat",
+   "Other Animal"
+  ],
+  "definition": "Accumulation of animal waste or unsanitary pet conditions on private property, handled by DOHMH.",
+  "count_60d": 470
+ },
+ {
+  "complaint_type": "ELEVATOR",
+  "count_6mo": 1322,
+  "agency": "HPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "MAINTENANCE"
+  ],
+  "definition": "Defective or non-working elevators in residential buildings, handled by HPD (unlike commercial DOB elevators).",
+  "count_60d": 451
+ },
+ {
+  "complaint_type": "Bike/Roller/Skate",
+  "count_6mo": 1462,
+  "agency": "NYPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "N/A"
+  ],
+  "definition": "Dangerous or illegal riding of bicycles, rollerblades, or skateboards in public areas, routed to NYPD.",
+  "count_60d": 377
+ },
+ {
+  "complaint_type": "Abandoned Bike",
+  "count_6mo": 1343,
+  "agency": "DSNY",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Chained to Public Property"
+  ],
+  "definition": "Bicycles left abandoned or chained to public street structures, handled by DSNY.",
+  "count_60d": 375
+ },
+ {
+  "complaint_type": "Unleashed Dog",
+  "count_6mo": 1212,
+  "agency": "DOHMH",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Unleashed Dog in Public"
+  ],
+  "definition": "Unrestrained dogs off-leash in public street or sidewalk areas outside of parks, handled by DOHMH.",
+  "count_60d": 366
+ },
+ {
+  "complaint_type": "Urinating in Public",
+  "count_6mo": 1183,
+  "agency": "NYPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "N/A"
+  ],
+  "definition": "Individuals urinating in public outdoor areas such as streets or sidewalks, routed to NYPD.",
+  "count_60d": 364
+ },
+ {
+  "complaint_type": "Electrical",
+  "count_6mo": 1183,
+  "agency": "DOB",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Electrical Wiring Defective/Exposed"
+  ],
+  "definition": "Defective, illegal, or exposed electrical wiring inside buildings, inspected by DOB.",
+  "count_60d": 351
+ },
+ {
+  "complaint_type": "Unsanitary Pigeon Condition",
+  "count_6mo": 1194,
+  "agency": "DOHMH",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Pigeon Waste",
+   "Pigeon Odor"
+  ],
+  "definition": "Health hazards caused by pigeon waste or roosting odors on public or private property, handled by DOHMH.",
+  "count_60d": 349
+ },
+ {
+  "complaint_type": "Litter Basket Complaint",
+  "count_6mo": 1106,
+  "agency": "DSNY",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Overflowing",
+   "Misuse"
+  ],
+  "definition": "Overflowing or misused public street litter baskets, handled by DSNY (unlike basket requests).",
+  "count_60d": 334
+ },
+ {
+  "complaint_type": "Dumpster Complaint",
+  "count_6mo": 1326,
+  "agency": "DSNY",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Overflowing dumpster",
+   "Blocking Sidewalk or Street",
+   "Small uncovered dumpster"
+  ],
+  "definition": "Commercial or residential dumpsters that are overflowing, uncovered, or blocking sidewalks/streets, handled by DSNY.",
+  "count_60d": 324
+ },
+ {
+  "complaint_type": "Day Care",
+  "count_6mo": 992,
+  "agency": "DOHMH",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Day Care Facility",
+   "Summer Camp",
+   "Other"
+  ],
+  "definition": "Unsafe, unsanitary, or non-compliant conditions at day care facilities or summer camps, handled by DOHMH.",
+  "count_60d": 313
+ },
+ {
+  "complaint_type": "Commercial Disposal Complaint",
+  "count_6mo": 1024,
+  "agency": "DSNY",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Waste Disposal",
+   "Waste Left in Front of Residence"
+  ],
+  "definition": "Commercial businesses improperly dumping waste or placing commercial trash outside residences, handled by DSNY.",
+  "count_60d": 303
+ },
+ {
+  "complaint_type": "Noise - House of Worship",
+  "count_6mo": 1236,
+  "agency": "NYPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Loud Talking",
+   "Loud Music/Party",
+   "Banging/Pounding",
+   "Loud Television"
+  ],
+  "definition": "Excessive noise from music, talking, or speakers originating specifically from a house of worship, routed to NYPD.",
+  "count_60d": 285
+ },
+ {
+  "complaint_type": "Industrial Waste",
+  "count_6mo": 890,
+  "agency": "DEP",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Concrete In Catch Basin (IEA)",
+   "Grease",
+   "Wastewater",
+   "Odor",
+   "Wastewater Into Catch Basin (IEB)",
+   "Concrete"
+  ],
+  "definition": "Illegal discharge of grease, concrete, or industrial wastewater into sewers or catch basins, handled by DEP.",
+  "count_60d": 285
+ },
+ {
+  "complaint_type": "Standing Water",
+  "count_6mo": 1551,
+  "agency": "DOHMH",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Other - Explain Below",
+   "Swimming Pool - Unmaintained",
+   "Puddle in Ground",
+   "Container - Over 5 Gallons",
+   "Puddle on Sidewalk",
+   "Sewer or Drain"
+  ],
+  "definition": "Stagnant water in pools, ground puddles, or large containers creating mosquito hazards, handled by DOHMH.",
+  "count_60d": 277
+ },
+ {
+  "complaint_type": "Lot Condition",
+  "count_6mo": 1252,
+  "agency": "DSNY",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Trash",
+   "Construction Debris",
+   "Appliances"
+  ],
+  "definition": "Accumulation of garbage, construction debris, or abandoned appliances on vacant or private lots, handled by DSNY.",
+  "count_60d": 274
+ },
+ {
+  "complaint_type": "Wood Pile Remaining",
+  "count_6mo": 1345,
+  "agency": "DPR",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Remove Debris"
+  ],
+  "definition": "Debris or wood piles left behind following tree work performed by DPR.",
+  "count_60d": 269
+ },
+ {
+  "complaint_type": "Bus Stop Shelter Complaint",
+  "count_6mo": 745,
+  "agency": "DOT",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Broken Glass",
+   "Dirty/Graffiti",
+   "Damaged Other",
+   "Lighting",
+   "Damaged Bench",
+   "Sign Missing or Defective"
+  ],
+  "definition": "Damaged, dirty, unlit, or vandalized public bus stop shelters, managed by DOT.",
+  "count_60d": 244
+ },
+ {
+  "complaint_type": "OUTSIDE BUILDING",
+  "count_6mo": 689,
+  "agency": "HPD",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "ROOFING",
+   "PAVEMENT",
+   "ROOF DOOR/HATCH",
+   "PORCH/BALCONY",
+   "GUTTER/LEADER",
+   "SKYLIGHT"
+  ],
+  "definition": "Structural defects in residential roofs, gutters, pavement, or balconies, handled by HPD (unlike commercial/DOB structures).",
+  "count_60d": 243
+ },
+ {
+  "complaint_type": "Water Quality",
+  "count_6mo": 658,
+  "agency": "DEP",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Odor/Taste",
+   "Clear With Particles",
+   "Cloudy/Milky",
+   "Clear Water With Other Particles (Use Comments) (QEZ)",
+   "Drinking Water Information",
+   "Taste/Odor, Chemical (QA2)"
+  ],
+  "definition": "Discolored, bad-tasting, or contaminated municipal tap water provided to properties, handled by DEP.",
+  "count_60d": 222
+ },
+ {
+  "complaint_type": "Construction Lead Dust",
+  "count_6mo": 727,
+  "agency": "DOHMH",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "In Common Areas",
+   "Common Areas and Apartment",
+   "Coming into Apartment"
+  ],
+  "definition": "Toxic lead dust generated by construction activities entering residential apartments or common areas, handled by DOHMH.",
+  "count_60d": 204
+ },
+ {
+  "complaint_type": "New Tree Request",
+  "count_6mo": 532,
+  "agency": "DPR",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "For One Address"
+  ],
+  "definition": "Requests for planting a new street tree at a specific property address, handled by DPR.",
+  "count_60d": 180
+ },
+ {
+  "complaint_type": "Taxi Report",
+  "count_6mo": 497,
+  "agency": "TLC",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Driver Report - Passenger",
+   "Driver Report - Non Passenger",
+   "Vehicle Report"
+  ],
+  "definition": "Complaints or reports involving licensed yellow or green NYC medallion taxis and drivers, handled by TLC.",
+  "count_60d": 176
+ },
+ {
+  "complaint_type": "Bike Rack",
+  "count_6mo": 502,
+  "agency": "DOT",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Abandoned Bike",
+   "Damaged/Bent/Loose/Leaning",
+   "Missing",
+   "Graffiti"
+  ],
+  "definition": "Damaged, bent, missing, or abandoned bicycle parking racks on public sidewalks, managed by DOT.",
+  "count_60d": 145
+ },
+ {
+  "complaint_type": "Indoor Sewage",
+  "count_6mo": 455,
+  "agency": "DOHMH",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Sewage Leak"
+  ],
+  "definition": "Raw sewage backing up or leaking inside a residential or commercial building, handled by DOHMH.",
+  "count_60d": 138
+ },
+ {
+  "complaint_type": "For Hire Vehicle Report",
+  "count_6mo": 501,
+  "agency": "TLC",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Driver Report - Non Passenger",
+   "Car Service Company Report",
+   "Driver Report - Passenger",
+   "Driver Complaint - Non Passenger",
+   "Car Service Company Complaint"
+  ],
+  "definition": "Complaints or reports involving non-taxi livery, car service, or app-based drivers and vehicles, handled by TLC.",
+  "count_60d": 134
+ },
+ {
+  "complaint_type": "Investigations and Discipline (IAD)",
+  "count_6mo": 406,
+  "agency": "DOB",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Investigative Inspection",
+   "Plumbing Work - Unlicensed/Illegal/Improper Work In Progress"
+  ],
+  "definition": "Active, in-progress illegal or unlicensed plumbing work and code violations undergoing DOB investigation.",
+  "count_60d": 134
+ },
+ {
+  "complaint_type": "Illegal Animal Kept as Pet",
+  "count_6mo": 392,
+  "agency": "DOHMH",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Rooster",
+   "Other",
+   "Farm Animal",
+   "Snake",
+   "Ferret",
+   "Monkey"
+  ],
+  "definition": "Prohibited wild or farm animals such as roosters, ferrets, or snakes kept on private property, handled by DOHMH.",
+  "count_60d": 131
+ },
+ {
+  "complaint_type": "Asbestos",
+  "count_6mo": 663,
+  "agency": "DOHMH",
+  "agency_share": 0.56,
+  "other_agencies": [
+   "DEP"
+  ],
+  "top_descriptors": [
+   "N/A",
+   "Asbestos Complaint (B1)"
+  ],
+  "definition": "Uncontained or unsafe asbestos disturbance and exposure in buildings, handled by DOHMH.",
+  "count_60d": 114
+ },
+ {
+  "complaint_type": "Mosquitoes",
+  "count_6mo": 626,
+  "agency": "DOHMH",
+  "agency_share": 1.0,
+  "other_agencies": [],
+  "top_descriptors": [
+   "Large Number of Mosquitoes"
+  ],
+  "definition": "Swarms or unusually high populations of live mosquitoes in public or private areas, handled by DOHMH.",
+  "count_60d": 108
+ }
+]

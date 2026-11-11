@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FirstRing City Ops</title>
+<style>
+  :root {
+    --bg: #f9f9f7; --panel: #ffffff; --line: #e4e2dc; --ink: #0b0b0b; --ink2: #52514e; --muted: #6b6a65;
+    --s1: #2a78d6; --s2: #eb6834; --ok: #0ca30c; --axis: #c9c7c0;
+    --gap: clamp(8px, 0.8vw, 18px); --pad: clamp(10px, 1vw, 22px); --radius: 10px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: clamp(13px, 0.78vw, 17px); overflow-x: hidden;
+  }
+  .app { display: grid; grid-template-columns: 70vw 1fr; grid-template-rows: 6vh 70vh minmax(24vh, auto); min-height: 100vh; }
+  header {
+    grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: var(--gap);
+    padding: 0 1.4vw; background: var(--panel); border-bottom: 1px solid var(--line); min-height: 44px;
+  }
+  .brand { display: flex; align-items: baseline; gap: 0.8vw; }
+  .brand b { font-size: clamp(16px, 1.25vw, 26px); font-weight: 650; letter-spacing: -0.01em; }
+  .brand span { color: var(--muted); font-size: clamp(13px, 0.9vw, 18px); }
+  .live { display: inline-flex; align-items: center; gap: 0.6vw; color: var(--ink2); font-size: clamp(12px, 0.8vw, 16px); }
+  .live .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 3px rgba(12,163,12,.15); }
+  .live.stale .dot { background: var(--s2); box-shadow: 0 0 0 3px rgba(235,104,52,.15); }
+  .filter { padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+
+  .main { grid-column: 1; grid-row: 2; display: flex; flex-direction: column; gap: var(--gap); padding: var(--pad) var(--pad) 0 1.4vw; min-height: 0; overflow: hidden; }
+  .bottom { grid-column: 1; grid-row: 3; padding: var(--gap) var(--pad) var(--pad) 1.4vw; min-width: 0; }
+  .side { grid-column: 2; grid-row: 2 / 4; padding: var(--pad) 1.4vw var(--pad) 0; min-width: 0; display: flex; flex-direction: column; min-height: 0; }
+
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--pad); min-width: 0; }
+  h2 { font-size: clamp(14px, 1vw, 21px); font-weight: 600; margin: 0; }
+  .note { color: var(--muted); font-size: clamp(12px, 0.72vw, 15px); }
+
+  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap); }
+  .tile { display: flex; flex-direction: column; gap: 0.4vh; padding: var(--pad) calc(var(--pad) * 1.3); }
+  .tile .l { color: var(--ink2); font-weight: 550; font-size: clamp(13px, 0.85vw, 18px); }
+  .tile .v { font-weight: 650; font-size: max(44px, 3.6vw); line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .tile .s { color: var(--muted); font-size: clamp(12px, 0.72vw, 15px); }
+  .tile.k1 { border-top: 4px solid var(--s1); }
+  .tile.k2 { border-top: 4px solid var(--s2); }
+
+  .channels { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6vh 2.2vw; padding: calc(var(--pad) * .7) calc(var(--pad) * 1.3); }
+  .channels .l { color: var(--ink2); font-weight: 600; font-size: clamp(13px, 0.85vw, 18px); }
+  .ch { display: inline-flex; align-items: center; gap: 0.6vw; color: var(--ink2); font-size: clamp(13px, 0.85vw, 18px); }
+  .ch b { color: var(--ink); font-size: clamp(18px, 1.5vw, 32px); font-weight: 650; font-variant-numeric: tabular-nums; }
+  .ch .d { width: 10px; height: 10px; border-radius: 50%; background: var(--ink2); }
+  .ch .d.agent { background: var(--s1); }
+  .ch .d.api { background: var(--s1); border-radius: 2px; }
+
+  .chartcard { flex: 1; display: flex; flex-direction: column; gap: 0.8vh; min-height: 0; }
+  .cardhead { display: flex; align-items: center; justify-content: space-between; gap: var(--gap); flex-wrap: wrap; }
+  .legend { display: flex; gap: 1.4vw; color: var(--ink2); font-size: clamp(12px, 0.78vw, 16px); }
+  .legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+  .chart { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-start; gap: 0.7vh; padding-top: 0.4vh; }
+  .bar-row { display: grid; grid-template-columns: minmax(80px, 9vw) 1fr; align-items: center; gap: 0.8vw; }
+  .bar-row .a { text-align: right; color: var(--ink2); font-weight: 550; font-size: clamp(12px, 0.85vw, 18px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bar-row .a.unrouted { color: var(--muted); font-style: italic; }
+  .bar-track { display: flex; align-items: center; gap: 0.5vw; border-left: 1px solid var(--axis); min-height: clamp(18px, 2.6vh, 34px); }
+  .bar { display: flex; height: clamp(14px, 2.2vh, 28px); border-radius: 0 4px 4px 0; overflow: hidden; transition: width .4s ease; min-width: 2px; }
+  .bar span { height: 100%; transition: width .4s ease; }
+  .bar span + span { border-left: 2px solid var(--panel); }
+  .bar .s1 { background: var(--s1); }
+  .bar .s2 { background: var(--s2); }
+  .bar-row .tot { color: var(--ink); font-weight: 650; font-size: clamp(13px, 0.9vw, 19px); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .bar-row .tot small { color: var(--muted); font-weight: 400; margin-left: 0.4vw; }
+
+  .empty { color: var(--muted); padding: 2vh 0; text-align: center; }
+
+  /* Needs a human */
+  .side .card { display: flex; flex-direction: column; gap: 1vh; flex: 1; min-height: 0; }
+  .count-pill { display: inline-block; min-width: 1.8em; text-align: center; padding: 1px 9px; border-radius: 999px; background: var(--s2); color: #fff; font-weight: 650; font-size: clamp(12px, 0.8vw, 16px); }
+  .queue { display: flex; flex-direction: column; gap: 1vh; overflow-y: auto; min-height: 0; flex: 1; }
+  .ho { border: 1px solid var(--line); border-left: 4px solid var(--s2); border-radius: 8px; padding: 1vh 0.9vw; display: flex; flex-direction: column; gap: 0.6vh; animation: fadein .5s ease; }
+  .ho .top { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6vw; }
+  .ho .id { font-weight: 650; font-variant-numeric: tabular-nums; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: clamp(12px, 0.8vw, 16px); }
+  .ho .t { color: var(--muted); font-size: clamp(11px, 0.7vw, 14px); white-space: nowrap; }
+  .ho .reason { display: inline-block; width: fit-content; padding: 1px 8px; border-radius: 999px; background: #fdeee6; color: #9a3f14; font-weight: 600; font-size: clamp(11px, 0.72vw, 15px); }
+  .ho .sum { font-size: clamp(14px, 0.95vw, 20px); line-height: 1.45; color: var(--ink); }
+  .ho .sum::before { content: "AI summary"; display: block; font-size: clamp(10px, 0.62vw, 13px); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 2px; }
+  .ho .col { color: var(--ink2); font-size: clamp(11px, 0.72vw, 15px); }
+
+  /* Recent tickets */
+  table { width: 100%; border-collapse: collapse; font-size: clamp(12px, 0.78vw, 16px); table-layout: fixed; }
+  th { text-align: left; color: var(--ink2); font-weight: 600; padding: 0.6vh 0.6vw; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  td { padding: 0.65vh 0.6vw; border-bottom: 1px solid var(--line); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  tbody tr:last-child td { border-bottom: 0; }
+  tbody tr { animation: fadein .5s ease; }
+  td.id { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 600; }
+  td .desc { color: var(--muted); }
+  .badge { display: inline-block; padding: 1px 8px; border-radius: 6px; background: #eaf2fc; color: #1d5aa6; font-weight: 650; font-size: .92em; }
+  .tag { display: inline-block; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink2); font-size: .9em; }
+  .tag.ai-agent, .tag.api { border-color: #b9d3f3; color: #1d5aa6; }
+  .unv { color: var(--s2); font-weight: 700; margin-left: 3px; }
+  @keyframes fadein { from { background: #fff6d6; } to { background: transparent; } }
+
+  @media (max-width: 900px) {
+    .app { display: flex; flex-direction: column; }
+    header { min-height: 52px; padding: 8px 16px; flex-wrap: wrap; }
+    .main, .bottom, .side { padding: 12px 16px; overflow: visible; }
+    .tiles { grid-template-columns: repeat(2, 1fr); }
+    .chart { min-height: 200px; }
+    .bar-row { grid-template-columns: 90px 1fr; }
+    .side .card { max-height: none; }
+    .hide-narrow { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="brand"><b>FirstRing · City ops</b><span>NYC 311 · live</span></div>
+    <div class="live" id="live"><span class="dot"></span><span id="updated">Connecting…</span><span class="filter" id="filter"></span></div>
+  </header>
+
+  <section class="main" aria-label="Overview">
+    <div class="tiles">
+      <div class="card tile"><span class="l">Calls handled</span><span class="v" id="k-calls">0</span><span class="s">phone and AI agents</span></div>
+      <div class="card tile k1"><span class="l">Auto-filed</span><span class="v" id="k-auto">0</span><span class="s">ticket opened, no human needed</span></div>
+      <div class="card tile k2"><span class="l">Handed to a person</span><span class="v" id="k-ho">0</span><span class="s">with an AI summary attached</span></div>
+      <div class="card tile"><span class="l">Agencies routed</span><span class="v" id="k-ag">0</span><span class="s">from the official type table</span></div>
+    </div>
+
+    <div class="card channels" aria-label="Where calls come from">
+      <span class="l">Where calls come from</span>
+      <span class="ch"><i class="d phone"></i>Phone <b id="c-phone">0</b></span>
+      <span class="ch"><i class="d agent"></i>AI agent on the phone <b id="c-agent">0</b></span>
+      <span class="ch"><i class="d api"></i>AI agent via API · MCP <b id="c-api">0</b></span>
+    </div>
+
+    <div class="card chartcard">
+      <div class="cardhead">
+        <h2>Tickets by agency</h2>
+        <div class="legend"><span><i style="background:var(--s1)"></i>Auto-filed</span><span><i style="background:var(--s2)"></i>Asked to clarify</span></div>
+      </div>
+      <div class="chart" id="chart"></div>
+    </div>
+  </section>
+
+  <section class="bottom" aria-label="Recent tickets">
+    <div class="card">
+      <div class="cardhead" style="margin-bottom:.6vh"><h2>Recent tickets</h2><span class="note">newest first</span></div>
+      <table>
+        <colgroup><col style="width:11%"><col style="width:7%"><col style="width:34%"><col style="width:9%"><col style="width:27%"><col style="width:12%"></colgroup>
+        <thead><tr><th>Ticket</th><th>Time</th><th>Type</th><th>Agency</th><th>Location</th><th>Channel</th></tr></thead>
+        <tbody id="recent"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <aside class="side" aria-label="Needs a human">
+    <div class="card">
+      <div class="cardhead"><h2>Needs a human</h2><span class="count-pill" id="ho-count">0</span></div>
+      <div class="note">Sent to a 311 specialist with an AI summary, so the caller is not asked again.</div>
+      <div class="queue" id="queue"></div>
+    </div>
+  </aside>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  // complaint_type (lower-case) -> agency, from the official NYC 311 type table
+  var TYPE_AGENCY = {"illegal parking":"NYPD","noise - residential":"NYPD","heat/hot water":"HPD","blocked driveway":"NYPD","noise - street/sidewalk":"NYPD","unsanitary condition":"HPD","street condition":"DOT","plumbing":"DOB","noise":"DEP","paint/plaster":"HPD","noise - commercial":"NYPD","abandoned vehicle":"NYPD","dirty condition":"DSNY","noise - vehicle":"NYPD","door/window":"HPD","water maintenance":"DEP","street light condition":"DOT","water leak":"HPD","general":"HPD","encampment":"NYPD","damaged tree":"DPR","homeless person assistance":"DHS","traffic signal condition":"DOT","illegal dumping":"DSNY","general construction/plumbing":"DOB","electric":"HPD","missed collection":"DSNY","derelict vehicles":"DSNY","flooring/stairs":"HPD","rodent":"DOHMH","appliance":"HPD","sidewalk condition":"DOT","maintenance or facility":"DPR","overgrown tree/branches":"DPR","sewer maintenance":"DEP","traffic":"NYPD","vendor enforcement":"DSNY","non-emergency police matter":"NYPD","obstruction":"DSNY","consumer complaint":"DCWP","building/use":"DOB","for hire vehicle complaint":"TLC","elevator":"HPD","lead":"DEP","safety":"HPD","graffiti":"DSNY","food establishment":"DOHMH","panhandling":"NYPD","residential disposal complaint":"DSNY","dead animal":"DSNY","animal-abuse":"NYPD","air quality":"DEP","dead/dying tree":"DPR","root/sewer/sidewalk condition":"DPR","indoor air quality":"DOHMH","street sweeping complaint":"DSNY","taxi complaint":"TLC","illegal tree damage":"DPR","noise - park":"NYPD","curb condition":"DOT","drug activity":"NYPD","smoking or vaping":"DOHMH","illegal posting":"DSNY","lost property":"TLC","real time enforcement":"DOB","noise - helicopter":"EDC","street sign - damaged":"DOT","drinking":"NYPD","animal in a park":"DPR","cannabis retailer":"OOS","litter basket request":"DSNY","emergency response team (ert)":"DOB","highway condition":"DOT","special projects inspection team (spit)":"DOB","violation of park rules":"DPR","street sign - dangling":"DOT","street sign - missing":"DOT","illegal fireworks":"NYPD","boilers":"DOB","food poisoning":"DOHMH","broken parking meter":"DOT","outdoor dining":"DOT","sanitation worker or vehicle complaint":"DSNY","water conservation":"DEP","mobile food vendor":"DOHMH","hazardous material":"DEP","unsanitary animal pvt property":"DOHMH","bike/roller/skate":"NYPD","abandoned bike":"DSNY","unleashed dog":"DOHMH","urinating in public":"NYPD","electrical":"DOB","unsanitary pigeon condition":"DOHMH","litter basket complaint":"DSNY","dumpster complaint":"DSNY","day care":"DOHMH","commercial disposal complaint":"DSNY","noise - house of worship":"NYPD","industrial waste":"DEP","standing water":"DOHMH","lot condition":"DSNY","wood pile remaining":"DPR","bus stop shelter complaint":"DOT","outside building":"HPD","water quality":"DEP","construction lead dust":"DOHMH","new tree request":"DPR","taxi report":"TLC","bike rack":"DOT","indoor sewage":"DOHMH","for hire vehicle report":"TLC","investigations and discipline (iad)":"DOB","illegal animal kept as pet":"DOHMH","asbestos":"DOHMH","mosquitoes":"DOHMH"};
+
+  var params = new URLSearchParams(location.search);
+  var srcFilter = params.get('source');
+  var showAll = params.get('all') === '1';
+
+  function keep(r) {
+    var s = String((r && r.source) || '');
+    if (srcFilter) return s === srcFilter;
+    if (showAll) return true;
+    return s.indexOf('eval') !== 0;
+  }
+  function str(v) { return v == null ? '' : String(v); }
+  function ts(r) { var t = Date.parse(r && r.created_at); return isNaN(t) ? 0 : t; }
+  function fmtTime(r) {
+    var t = ts(r); if (!t) return '—';
+    return new Date(t).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function setText(id, v) { var e = document.getElementById(id); if (e) e.textContent = String(v); }
+  function agencyFor(type, learned) {
+    var k = str(type).trim().toLowerCase();
+    if (!k) return null;
+    return learned[k] || TYPE_AGENCY[k] || null;
+  }
+
+  document.getElementById('filter').textContent = srcFilter ? 'source: ' + srcFilter : (showAll ? 'all sources' : 'live calls');
+
+  function render(all) {
+    var rows = (Array.isArray(all) ? all : []).filter(function (r) { return r && typeof r === 'object' && keep(r); });
+    var reqs = rows.filter(function (r) { return r.kind === 'request'; });
+    var hos = rows.filter(function (r) { return r.kind === 'handoff'; });
+
+    // learn type -> agency from filed requests first (server is the source of truth)
+    var learned = {};
+    reqs.forEach(function (r) { var k = str(r.complaint_type).trim().toLowerCase(); if (k && r.agency) learned[k] = str(r.agency); });
+
+    var agencies = {};
+    reqs.forEach(function (r) { if (r.agency) agencies[str(r.agency)] = 1; });
+
+    setText('k-calls', rows.length);
+    setText('k-auto', reqs.length);
+    setText('k-ho', hos.length);
+    setText('k-ag', Object.keys(agencies).length);
+
+    var ch = { phone: 0, 'ai-agent': 0, api: 0 };
+    rows.forEach(function (r) { if (ch.hasOwnProperty(r.channel)) ch[r.channel]++; });
+    setText('c-phone', ch.phone); setText('c-agent', ch['ai-agent']); setText('c-api', ch.api);
+
+    // chart
+    var by = {};
+    function bucket(a) { return by[a] || (by[a] = { agency: a, auto: 0, ask: 0 }); }
+    reqs.forEach(function (r) { bucket(r.agency ? str(r.agency) : 'Unrouted').auto++; });
+    hos.forEach(function (h) {
+      var c = (h.collected && typeof h.collected === 'object') ? h.collected : {};
+      bucket(agencyFor(c.complaint_type, learned) || 'Unrouted').ask++;
+    });
+    var list = Object.keys(by).map(function (k) { var b = by[k]; b.total = b.auto + b.ask; return b; })
+      .sort(function (a, b) {
+        if ((a.agency === 'Unrouted') !== (b.agency === 'Unrouted')) return a.agency === 'Unrouted' ? 1 : -1;
+        return b.total - a.total || a.agency.localeCompare(b.agency);
+      });
+    var chart = document.getElementById('chart');
+    chart.replaceChildren();
+    if (!list.length) {
+      chart.appendChild(el('div', 'empty', 'No calls yet. Tickets appear here as soon as a call is filed.'));
+    } else {
+      var max = Math.max.apply(null, list.map(function (b) { return b.total; }));
+      list.forEach(function (b) {
+        var row = el('div', 'bar-row');
+        row.title = b.agency + ': ' + b.auto + ' auto-filed, ' + b.ask + ' asked to clarify';
+        row.appendChild(el('div', 'a' + (b.agency === 'Unrouted' ? ' unrouted' : ''), b.agency));
+        var track = el('div', 'bar-track');
+        var bar = el('div', 'bar');
+        bar.style.width = 'calc(' + (b.total / max * 100) + '% - 7vw)';
+        if (b.auto) { var s1 = el('span', 's1'); s1.style.width = (b.auto / b.total * 100) + '%'; bar.appendChild(s1); }
+        if (b.ask) { var s2 = el('span', 's2'); s2.style.width = (b.ask / b.total * 100) + '%'; bar.appendChild(s2); }
+        track.appendChild(bar);
+        var tot = el('span', 'tot', String(b.total));
+        if (b.ask) tot.appendChild(el('small', null, b.auto + ' + ' + b.ask));
+        track.appendChild(tot);
+        row.appendChild(track);
+        chart.appendChild(row);
+      });
+    }
+
+    // needs a human
+    var q = document.getElementById('queue');
+    q.replaceChildren();
+    setText('ho-count', hos.length);
+    var hsorted = hos.slice().sort(function (a, b) { return ts(b) - ts(a); });
+    if (!hsorted.length) q.appendChild(el('div', 'empty', 'Nobody waiting. Every call so far was filed automatically.'));
+    hsorted.forEach(function (h) {
+      var card = el('div', 'ho');
+      var top = el('div', 'top');
+      top.appendChild(el('span', 'id', str(h.request_id) || '—'));
+      top.appendChild(el('span', 't', fmtTime(h)));
+      card.appendChild(top);
+      if (h.reason) card.appendChild(el('span', 'reason', str(h.reason)));
+      card.appendChild(el('div', 'sum', str(h.summary) || 'No summary yet.'));
+      var c = (h.collected && typeof h.collected === 'object') ? h.collected : {};
+      var bits = [c.complaint_type, c.location, c.borough].filter(Boolean).map(str);
+      if (bits.length || h.channel) card.appendChild(el('div', 'col', (bits.length ? 'Collected: ' + bits.join(' · ') : 'Nothing collected') + (h.channel ? '  ·  via ' + str(h.channel) : '')));
+      q.appendChild(card);
+    });
+
+    // recent tickets
+    var tb = document.getElementById('recent');
+    tb.replaceChildren();
+    var recent = reqs.slice().sort(function (a, b) { return ts(b) - ts(a); }).slice(0, 8);
+    if (!recent.length) {
+      var tr0 = el('tr'); var td0 = el('td', 'empty', 'No tickets yet.'); td0.colSpan = 6; tr0.appendChild(td0); tb.appendChild(tr0);
+    }
+    recent.forEach(function (r) {
+      var tr = el('tr');
+      tr.appendChild(el('td', 'id', str(r.request_id) || '—'));
+      tr.appendChild(el('td', null, fmtTime(r)));
+      var tdT = el('td'); tdT.appendChild(document.createTextNode(str(r.complaint_type) || '—'));
+      if (r.descriptor) {
+        tdT.appendChild(el('span', 'desc', ' / ' + str(r.descriptor)));
+        if (r.descriptor_unverified) { var u = el('span', 'unv', '?'); u.title = 'Descriptor not verified'; tdT.appendChild(u); }
+      }
+      tdT.title = tdT.textContent; tr.appendChild(tdT);
+      var tdA = el('td'); tdA.appendChild(el('span', 'badge', str(r.agency) || '—')); tr.appendChild(tdA);
+      var loc = [r.location, r.borough].filter(Boolean).map(str).join(', ');
+      var tdL = el('td', null, loc || '—'); tdL.title = loc; tr.appendChild(tdL);
+      var tdC = el('td'); var chn = str(r.channel) || '—';
+      var tg = el('span', 'tag ' + chn, chn); tdC.appendChild(tg);
+      if (r.language && r.language !== 'en') tdC.appendChild(el('span', 'tag', str(r.language)));
+      tr.appendChild(tdC);
+      tb.appendChild(tr);
+    });
+  }
+
+  var live = document.getElementById('live');
+  var lastOk = 0, lastSig = null;
+  function tick() {
+    fetch('/api/ops/tickets', { cache: 'no-store' })
+      .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
+      .then(function (data) {
+        var sig = JSON.stringify(data);
+        if (sig !== lastSig) { lastSig = sig; render(data); }
+        lastOk = Date.now();
+        live.classList.remove('stale');
+        setText('updated', 'Updated ' + new Date(lastOk).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
+      })
+      .catch(function () {
+        live.classList.add('stale');
+        setText('updated', lastOk ? 'Reconnecting… last update ' + new Date(lastOk).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }) : 'Waiting for server…');
+        if (lastSig === null) { lastSig = ''; render([]); }
+      });
+  }
+  render([]);
+  tick();
+  setInterval(tick, 2000);
+})();
+</script>
+</body>
+</html>

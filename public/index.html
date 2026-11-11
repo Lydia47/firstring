@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FirstRing · NYC 311 call</title>
+<style>
+  :root { --bg:#0f1115; --panel:#171a21; --line:#262b35; --text:#eef1f6; --muted:#8b93a3; --accent:#4f9dff; --ok:#3ecf8e; --warn:#ffb547; --agent:#a9cbff; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--text); font-family:-apple-system, "SF Pro Text", Helvetica, Arial, sans-serif; overflow:hidden; }
+  header { height:8vh; display:flex; align-items:center; gap:1.6vw; padding:0 2vw; border-bottom:1px solid var(--line); }
+  .brand { font-weight:800; font-size:1.7vw; letter-spacing:-0.02em; }
+  .brand span { color:var(--accent); }
+  .sub { color:var(--muted); font-size:1.05vw; }
+  .live { margin-left:auto; display:flex; align-items:center; gap:.7vw; font-size:1.05vw; color:var(--muted); }
+  .dot { width:.8vw; height:.8vw; border-radius:50%; background:#555; }
+  .dot.on { background:#ff4d4f; box-shadow:0 0 0 .35vw rgba(255,77,79,.18); }
+  .timer { font: 700 1.9vw/1 ui-monospace, "SF Mono", Menlo, monospace; color:var(--text); min-width:6vw; text-align:right; }
+  main { height:92vh; display:grid; grid-template-columns:55% 45%; }
+  .left { padding:2.2vh 1.6vw 2vh 2vw; border-right:1px solid var(--line); display:flex; flex-direction:column; min-height:0; }
+  .right { padding:2.2vh 2vw 2vh 1.6vw; display:flex; flex-direction:column; gap:2vh; min-height:0; }
+  h2 { margin:0 0 1.4vh; font-size:.95vw; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); font-weight:600; }
+  #transcript { flex:1; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end; gap:1.4vh; mask-image:linear-gradient(to bottom, transparent 0, #000 9%); }
+  .msg { max-width:92%; font-size:1.55vw; line-height:1.35; padding:1.1vh 1.1vw; border-radius:1vw; }
+  .msg .who { display:block; font-size:.8vw; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-bottom:.4vh; font-weight:600; }
+  .msg.caller { align-self:flex-end; background:#232833; }
+  .msg.agent { align-self:flex-start; background:#13243d; color:var(--agent); }
+  .msg.note { align-self:center; background:none; font-size:1vw; color:var(--muted); padding:0; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:1.1vw; padding:2.2vh 1.6vw; }
+  #ticket { min-height:41vh; position:relative; }
+  #ticket.empty { display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:1.2vw; }
+  #ticket.filed { border-color:var(--ok); box-shadow:0 0 0 .2vw rgba(62,207,142,.25); animation:pop .5s ease-out; }
+  #ticket.handoff { border-color:var(--warn); box-shadow:0 0 0 .2vw rgba(255,181,71,.25); animation:pop .5s ease-out; }
+  @keyframes pop { from { transform:scale(.97); opacity:.4 } to { transform:none; opacity:1 } }
+  .tk-head { display:flex; align-items:center; gap:1vw; margin-bottom:1.6vh; }
+  .badge { font-weight:700; font-size:.9vw; padding:.5vh .7vw; border-radius:.5vw; background:rgba(62,207,142,.15); color:var(--ok); text-transform:uppercase; letter-spacing:.06em; }
+  .badge.warn { background:rgba(255,181,71,.15); color:var(--warn); }
+  .rid { font: 700 1.5vw/1 ui-monospace, Menlo, monospace; }
+  .type { font-size:2.2vw; font-weight:800; letter-spacing:-0.02em; line-height:1.1; }
+  .desc { font-size:1.35vw; color:var(--muted); margin-top:.6vh; }
+  .grid { display:grid; grid-template-columns:auto 1fr; gap:1.1vh 1.2vw; margin-top:2.2vh; font-size:1.3vw; }
+  .grid dt { color:var(--muted); }
+  .grid dd { margin:0; font-weight:600; }
+  .agency { display:inline-block; background:var(--accent); color:#fff; font-weight:800; padding:.3vh .7vw; border-radius:.45vw; }
+  .src { font-size:.85vw; color:var(--muted); margin-left:.5vw; font-weight:400; }
+  .elapsed { position:absolute; right:1.6vw; top:2.2vh; font-size:1vw; color:var(--muted); }
+  #actions { flex:1; overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end; gap:1vh; font: 1vw/1.35 ui-monospace, Menlo, monospace; }
+  .act { color:#c9d1dd; } .act b { color:var(--accent); font-weight:600; } .act .ok { color:var(--ok); } .act .err { color:#ff7875; } .act .t { color:var(--muted); }
+  #banner { display:none; position:fixed; left:50%; top:10vh; transform:translateX(-50%); background:#ff4d4f; color:#fff; font-weight:800; font-size:1.6vw; padding:1.5vh 2vw; border-radius:1vw; z-index:5; }
+  #start { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(15,17,21,.92); z-index:9; }
+  #start button { font-size:1.6vw; padding:1.6vh 2.4vw; border-radius:1vw; border:0; background:var(--accent); color:#fff; font-weight:700; cursor:pointer; }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">First<span>Ring</span></div>
+  <div class="sub">NYC 311 voice agent</div>
+  <div class="live"><div class="dot" id="dot"></div><span id="status">Ready</span><div class="timer" id="timer">0:00</div></div>
+</header>
+<main>
+  <section class="left"><h2 id="callLabel">Live call</h2><div id="transcript"></div></section>
+  <section class="right">
+    <div><h2>Service request</h2><div class="card empty" id="ticket">Waiting for the caller…</div></div>
+    <div style="display:flex;flex-direction:column;flex:1;min-height:0"><h2>Agent actions</h2><div id="actions"></div></div>
+  </section>
+</main>
+<div id="banner"></div>
+<div id="start"><button id="go">Start call</button></div>
+<script>
+const qs = new URLSearchParams(location.search);
+const CALLERS = {
+  'nyc-noise': ['nyc-noise-1', 'nyc-noise-2', 'nyc-noise-3'],
+  'es-heat': ['es-heat-1', 'es-heat-2', 'es-heat-3'],
+  'agent': ['agent-1', 'agent-2'],
+  'human': ['human-1'],
+};
+const callerKey = qs.get('caller');
+const script = CALLERS[callerKey] || null;
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+// ---------- transcript ----------
+let cur = null; // {who, el}
+function say(who, text) {
+  if (!cur || cur.who !== who) {
+    const el = document.createElement('div'); el.className = 'msg ' + who;
+    el.innerHTML = `<span class="who">${who === 'agent' ? 'FirstRing' : 'Caller'}</span><span class="txt"></span>`;
+    $('transcript').appendChild(el); cur = { who, el };
+  }
+  const t = cur.el.querySelector('.txt'); t.textContent = (t.textContent + text).replace(/\s+/g, ' ').trimStart();
+  trim($('transcript'), 14);
+}
+function note(text) { const el = document.createElement('div'); el.className = 'msg note'; el.textContent = text; $('transcript').appendChild(el); cur = null; }
+function trim(box, n) { while (box.children.length > n) box.removeChild(box.firstChild); }
+function action(html) { const el = document.createElement('div'); el.className = 'act'; el.innerHTML = html; $('actions').appendChild(el); trim($('actions'), 12); }
+
+// ---------- timer ----------
+let tStart = 0, tStop = 0, tick;
+const fmt = (ms) => { const s = Math.floor(ms / 1000); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; };
+function startTimer() { tStart = performance.now(); tick = setInterval(() => { $('timer').textContent = fmt((tStop || performance.now()) - tStart); }, 200); }
+
+// ---------- audio out (24k PCM from the agent) ----------
+let outCtx, playHead = 0, playing = [];
+function playPcm24(buf) {
+  const i16 = new Int16Array(buf); const f = new Float32Array(i16.length);
+  for (let i = 0; i < i16.length; i++) f[i] = i16[i] / 32768;
+  const ab = outCtx.createBuffer(1, f.length, 24000); ab.copyToChannel(f, 0);
+  const src = outCtx.createBufferSource(); src.buffer = ab; src.connect(outCtx.destination);
+  playHead = Math.max(playHead, outCtx.currentTime + 0.05); src.start(playHead); playHead += ab.duration;
+  playing.push(src); src.onended = () => { playing = playing.filter((s) => s !== src); };
+}
+const queueEmpty = () => !outCtx || outCtx.currentTime >= playHead;
+function stopPlayback() { for (const s of playing) try { s.stop(); } catch {} playing = []; playHead = 0; }
+
+// ---------- audio in ----------
+let ws, inCtx, turns = 0, agentSpokeSince = false, ticketShown = false, callId = null;
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+async function loadWav(name) {
+  const b = await (await fetch(`/audio/${name}-16k.wav`)).arrayBuffer();
+  const u8 = new Uint8Array(b); let off = 12;
+  while (off < u8.length - 8) { const id = String.fromCharCode(...u8.slice(off, off + 4)); const sz = new DataView(b).getUint32(off + 4, true); if (id === 'data') return b.slice(off + 8, off + 8 + sz); off += 8 + sz; }
+  throw new Error('bad wav ' + name);
+}
+async function speakFile(name) {
+  const pcm = await loadWav(name);
+  // play it out loud so the screen recording has the caller's voice
+  const i16 = new Int16Array(pcm); const f = new Float32Array(i16.length);
+  for (let i = 0; i < i16.length; i++) f[i] = i16[i] / 32768;
+  const ab = inCtx.createBuffer(1, f.length, 16000); ab.copyToChannel(f, 0);
+  const src = inCtx.createBufferSource(); src.buffer = ab; src.connect(inCtx.destination); src.start();
+  const CH = 3200; // 100 ms
+  for (let i = 0; i < pcm.byteLength; i += CH) { if (ws.readyState !== 1) return; ws.send(pcm.slice(i, i + CH)); await sleep(100); }
+  for (let i = 0; i < 15; i++) { if (ws.readyState !== 1) return; ws.send(new ArrayBuffer(CH)); await sleep(100); } // 1.5 s silence for VAD
+}
+async function waitAgentDone() {
+  // wait until the agent finished a turn after we spoke AND the browser finished playing it, then 0.5 s
+  const t0 = Date.now();
+  while (Date.now() - t0 < 30000) {
+    if (turnSeen && queueEmpty()) break;
+    await sleep(100);
+  }
+  await sleep(500);
+}
+let turnSeen = false;
+async function runScript() {
+  for (const line of script) {
+    await waitAgentDone(); // first: the opening line; later: the agent's reply to the previous line
+    if (ticketShown) break;
+    turnSeen = false;
+    await speakFile(line);
+  }
+  await waitAgentDone();
+}
+async function startMic() {
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, channelCount: 1 } });
+  const src = inCtx.createMediaStreamSource(stream);
+  const proc = inCtx.createScriptProcessor(2048, 1, 1);
+  proc.onaudioprocess = (e) => {
+    if (!ws || ws.readyState !== 1) return;
+    const f = e.inputBuffer.getChannelData(0); const i16 = new Int16Array(f.length);
+    for (let i = 0; i < f.length; i++) i16[i] = Math.max(-1, Math.min(1, f[i])) * 32767;
+    ws.send(i16.buffer);
+  };
+  src.connect(proc); proc.connect(inCtx.destination);
+}
+
+// ---------- ticket rendering ----------
+function showTicket(r) {
+  if (callId && r.call_id && r.call_id !== callId) return;
+  ticketShown = true; tStop = performance.now();
+  const el = $('ticket'); el.classList.remove('empty');
+  const secs = Math.round((tStop - tStart) / 1000);
+  if (r.kind === 'handoff') {
+    el.className = 'card handoff';
+    el.innerHTML = `<div class="tk-head"><span class="badge warn">Transferring to 311 specialist</span><span class="rid">${esc(r.request_id)}</span></div>
+      <div class="type">Handed to a person</div><div class="desc">${esc(r.reason)}</div>
+      <dl class="grid"><dt>AI summary</dt><dd>${esc(r.summary)}</dd><dt>Queue</dt><dd>311 specialists · details passed on</dd></dl>
+      <div class="elapsed">after ${secs}s</div>`;
+    $('status').textContent = 'Transferring to 311 specialist';
+    return;
+  }
+  el.className = 'card filed';
+  el.innerHTML = `<div class="tk-head"><span class="badge">Filed</span><span class="rid">${esc(r.request_id)}</span></div>
+    <div class="type">${esc(r.complaint_type)}</div><div class="desc">${esc(r.descriptor)}${r.descriptor_unverified ? ' · unverified descriptor' : ''}</div>
+    <dl class="grid">
+      <dt>Agency</dt><dd><span class="agency">${esc(r.agency)}</span><span class="src">from official type table</span></dd>
+      <dt>Location</dt><dd>${esc(r.location)}, ${esc(r.borough)}</dd>
+      ${r.details ? `<dt>Details</dt><dd>${esc(r.details)}</dd>` : ""}
+      ${r.on_behalf_of ? `<dt>For resident</dt><dd>${esc(r.on_behalf_of)} · via AI assistant</dd>` : ''}
+      <dt>Status</dt><dd>${esc(r.status)} · read back and confirmed by caller</dd>
+    </dl><div class="elapsed">filed in ${secs}s</div>`;
+  $('status').textContent = 'Ticket filed';
+}
+
+// ---------- call ----------
+async function start() {
+  $('start').style.display = 'none';
+  outCtx = new AudioContext({ sampleRate: 24000 });
+  inCtx = new AudioContext({ sampleRate: 16000 });
+  const params = new URLSearchParams({ source: qs.get('source') || 'demo' });
+  if (callerKey === 'agent') params.set('channel', 'ai-agent');
+  if (callerKey === 'es-heat') params.set('lang', 'es');
+  ws = new WebSocket(`${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}/call?${params}`);
+  ws.binaryType = 'arraybuffer';
+  $('status').textContent = 'Connecting…';
+  $('callLabel').textContent = script ? 'Live call · synthetic caller' : 'Live call';
+  ws.onmessage = (ev) => {
+    if (typeof ev.data !== 'string') { playPcm24(ev.data); return; }
+    const m = JSON.parse(ev.data);
+    if (m.type === 'ready') { callId = m.call_id; $('dot').classList.add('on'); $('status').textContent = 'On call'; startTimer(); if (script) runScript(); else startMic(); }
+    else if (m.type === 'caller') say('caller', m.text);
+    else if (m.type === 'agent') say('agent', m.text);
+    else if (m.type === 'turn-complete') { turnSeen = true; cur = null; }
+    else if (m.type === 'interrupted') stopPlayback();
+    else if (m.type === 'tool') {
+      const r = m.response || {};
+      const argStr = m.name === 'find_complaint_type' ? `"${esc(m.args.query)}"` : m.name === 'create_service_request' ? `${esc(m.args.complaint_type)} · ${esc(m.args.borough)}` : esc(m.args.reason || m.args.request_id || '');
+      const res = r.error ? `<span class="err">rejected: ${esc(r.error)}</span>`
+        : m.name === 'find_complaint_type' ? `<span class="ok">${(r.candidates || []).length} official types${r.clarify ? ' · clarify: ' + esc(r.clarify[0].group) : ''}</span>`
+        : m.name === 'create_service_request' ? `<span class="ok">accepted → ${esc(r.request_id)} · ${esc(r.agency)}</span>`
+        : m.name === 'transfer_to_human' ? `<span class="ok">queued for 311 specialist</span>` : `<span class="ok">${esc(JSON.stringify(r)).slice(0, 80)}</span>`;
+      action(`<span class="t">${m.t.toFixed(1)}s</span> <b>${m.name}</b>(${argStr}) ${res}`);
+    }
+    else if (m.type === 'ticket') showTicket(m.record);
+    else if (m.type === 'emergency') { $('banner').textContent = '⚠ ' + m.message; $('banner').style.display = 'block'; action(`<span class="err">emergency keyword "${esc(m.keyword)}" → 911 message</span>`); }
+    else if (m.type === 'error') note('⚠ ' + m.message);
+    else if (m.type === 'ended') { $('dot').classList.remove('on'); if (!tStop) tStop = performance.now(); if (!ticketShown) $('status').textContent = 'Call ended'; }
+  };
+  ws.onclose = () => { $('dot').classList.remove('on'); };
+}
+$('go').onclick = start;
+if (qs.get('autostart') === '1') start();
+window.firstring = { queueEmpty, get turnSeen() { return turnSeen; } };
+</script>
+</body>
+</html>
