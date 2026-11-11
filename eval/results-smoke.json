@@ -2,15 +2,88 @@
   "set": "dev",
   "model": "gemini-3.1-flash-live-preview",
   "started_at": "2026-11-11T11:11:25.444Z",
-  "finished_at": null,
+  "finished_at": "2026-11-11T11:12:53.369Z",
   "counts": {
-    "filed_correct": 0,
+    "filed_correct": 1,
     "filed_wrong": 0,
     "asked_clarification": 0,
     "handed_off": 0,
-    "network_error": 0,
-    "total": 0
+    "network_error": 1,
+    "total": 2
   },
-  "agency_correct": 0,
-  "calls": []
+  "agency_correct": 1,
+  "calls": [
+    {
+      "id": "nyc-01",
+      "expected": {
+        "complaint_type": "Noise - Residential",
+        "descriptor": "Loud Music/Party",
+        "agency": "NYPD"
+      },
+      "got": {
+        "complaint_type": "Noise - Residential",
+        "descriptor": "Loud Music/Party",
+        "agency": "NYPD"
+      },
+      "bucket": "filed_correct",
+      "agency_match": true,
+      "descriptor_match": true,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        },
+        {
+          "role": "caller",
+          "text": "हे, माय अपस्टेअर्स नेबर्स अ‍ॅट 742 सेंट निकोलस अ‍ॅव्हेन्यू इन मॅनहॅटन हॅव बीन ब्लास्टिंग बेस थ्रू द फ्लोरबोर्ड्स सिन्स मिडनाईट."
+        },
+        {
+          "role": "tool",
+          "text": "find_complaint_type {\"query\":\"loud music from upstairs neighbor\"} -> {\"candidates\":[{\"complaint_type\":\"Noise - Residential\",\"definition\":\"Loud music, parties, television, or talking originating inside residential apartments or private homes.\",\"agency\":\"NYPD\",\"descriptors\":[\"Loud Music/Party\",\"Banging/Pounding\",\"Loud Talking\",\"Loud Television\"]},{\"complaint_type\":\"Noise - Street/Sidewalk\",\"definition\":\"Loud music, parties, or loud talking occurring directly on public streets or sidewalks.\",\"agency\":\"NYPD\",\"descriptors\":[\"Loud Music/Party\",\"Loud Talking\"]},{\"complaint_type\":\"Noise - Commercial\",\"definition\":\"Excessive music, shouting, or noise originating from commercial businesses, bars, or restaurants.\",\"agency\":\"NYPD\",\"descriptors\":[\"Loud Music/Party\",\"Banging/Pounding\",\"Loud Talking\",\"Car/Truck Music\",\"Car/Truck Horn\",\"Loud Television\"]},{\"complaint_type\":\"Noise - Park\",\"definition\":\"Excessive music, shouting, or loud parties originating within public parks or green spaces.\",\"agency\":\"NYPD\",\"descriptors\":[\"Loud Music/Party\",\"Loud Talking\"]},{\"complaint_type\":\"Noise - House of Worship\",\"definition\":\"Excessive noise from music, talking, or speakers originating specifically from a house of worship, routed to NYPD.\",\"agency\":\"NYPD\",\"descriptors\":[\"Loud Talking\",\"Loud Music/Party\",\"Banging/Pounding\",\"Loud Television\"]}],\"clarify\":[{\"group\":\"noise\",\"types\":[\"Noise - Residential\",\"Noise - Street/Sidewalk\",\"Noise - Commercial\",\"Noise - Park\",\"Noise - Vehicle\",\"Noise\"],\"ask_caller\":\"Where is the noise coming from: inside a home, a business, the street or sidewalk, a park, a vehicle, or construction or equipment?\",\"rule\":\"Home→Residential; business/bar→Commercial; street/sidewalk crowd→Street/Sidewalk; park→Park; car/truck→Vehicle; construction, alarms, equipment, barking dog→Noise (DEP).\"}]}"
+        },
+        {
+          "role": "agent",
+          "text": "I'll file a residential noise complaint at 742 Saint Nicholas Avenue, Manhattan. Is that right?"
+        },
+        {
+          "role": "caller",
+          "text": "Yes, that's right."
+        },
+        {
+          "role": "tool",
+          "text": "create_service_request {\"confirmed_by_caller\":true,\"complaint_type\":\"Noise - Residential\",\"descriptor\":\"Loud Music/Party\",\"location\":\"742 SAINT NICOLAS AVENUE\",\"borough\":\"MANHATTAN\"} -> {\"request_id\":\"311-46368\",\"agency\":\"NYPD\",\"status\":\"Open\",\"complaint_type\":\"Noise - Residential\",\"descriptor\":\"Loud Music/Party\"}"
+        }
+      ],
+      "seconds_to_ticket": 25.892,
+      "note": null,
+      "seconds": 25.9
+    },
+    {
+      "id": "nyc-02",
+      "expected": {
+        "complaint_type": "Noise - Street/Sidewalk",
+        "descriptor": "Loud Music/Party",
+        "agency": "NYPD"
+      },
+      "got": {
+        "complaint_type": null,
+        "descriptor": null,
+        "agency": null
+      },
+      "bucket": "network_error",
+      "agency_match": null,
+      "descriptor_match": null,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        }
+      ],
+      "seconds_to_ticket": null,
+      "note": "timeout 60s",
+      "seconds": 60
+    }
+  ]
 }

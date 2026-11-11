@@ -1,0 +1,63 @@
+{
+  "set": "dev",
+  "model": "gemini-3.1-flash-live-preview",
+  "started_at": "2026-11-11T11:24:08.251Z",
+  "finished_at": null,
+  "counts": {
+    "filed_correct": 1,
+    "filed_wrong": 0,
+    "asked_clarification": 0,
+    "handed_off": 0,
+    "network_error": 0,
+    "total": 1
+  },
+  "agency_correct": 1,
+  "calls": [
+    {
+      "id": "nyc-01",
+      "expected": {
+        "complaint_type": "Noise - Residential",
+        "descriptor": "Loud Music/Party",
+        "agency": "NYPD"
+      },
+      "got": {
+        "complaint_type": "Noise - Residential",
+        "descriptor": "Loud Music/Bass/Nightclub",
+        "agency": "NYPD"
+      },
+      "bucket": "filed_correct",
+      "agency_match": true,
+      "descriptor_match": false,
+      "clarification": null,
+      "transcript": [
+        {
+          "role": "agent",
+          "text": "NYC 311, this is FirstRing. What can I help you with today?"
+        },
+        {
+          "role": "caller",
+          "text": "हे, माय अपस्टेअर्स नेबर्स अ‍ॅट 742 सेंट निकोलस अ‍ॅव्हेन्यू इन मॅनहॅटन हॅव बीन ब्लास्टिंग बेस थ्रू द फ्लोरबोर्ड्स सिन्स मिडनाईट."
+        },
+        {
+          "role": "tool",
+          "text": "find_complaint_type {\"query\":\"upstairs neighbors have been blasting bass through the floorboards since midnight\"} -> {\"candidates\":[{\"complaint_type\":\"For Hire Vehicle Report\",\"definition\":\"Complaints or reports involving non-taxi livery, car service, or app-based drivers and vehicles, handled by TLC.\",\"agency\":\"TLC\",\"descriptors\":[\"Driver Report - Non Passenger\",\"Car Service Company Report\",\"Driver Report - Passenger\",\"Driver Complaint - Non Passenger\",\"Car Service Company Complaint\"]}]}"
+        },
+        {
+          "role": "agent",
+          "text": "I'll file a residential noise complaint at 742 Saint Nicholas Avenue, Manhattan. Is that right?"
+        },
+        {
+          "role": "caller",
+          "text": "Yes, that's right."
+        },
+        {
+          "role": "tool",
+          "text": "create_service_request {\"details\":\"Neighbor is blasting bass through the floorboards.\",\"location\":\"742 ST NICHOLAS AVENUE\",\"descriptor\":\"Loud Music/Bass/Nightclub\",\"confirmed_by_caller\":true,\"complaint_type\":\"Noise - Residential\",\"borough\":\"MANHATTAN\"} -> {\"request_id\":\"311-39041\",\"agency\":\"NYPD\",\"status\":\"Open\",\"complaint_type\":\"Noise - Residential\",\"descriptor\":\"Loud Music/Bass/Nightclub\"}"
+        }
+      ],
+      "seconds_to_ticket": 25.586,
+      "note": null,
+      "seconds": 25.8
+    }
+  ]
+}
